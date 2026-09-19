@@ -684,6 +684,258 @@
       "brand": "RICOH",
       "model": "Ricoh GR IIIx",
       "variant": "일반형"
+    },
+    {
+      "id": "product_0c2e0abc5b97ff214488",
+      "brand": "Samsung",
+      "model": "Galaxy S22 Ultra",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_3d3ce0eca2655f4470a9",
+      "brand": "Samsung",
+      "model": "Galaxy S22 Ultra",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_63ab367fe6bd81debbe4",
+      "brand": "Samsung",
+      "model": "Galaxy S22 Ultra",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_4424a9a815f515fadc09",
+      "brand": "Samsung",
+      "model": "Galaxy S23 Ultra",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_6929416d786faf499604",
+      "brand": "Samsung",
+      "model": "Galaxy S23 Ultra",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_925e3c2aaa52a7a4fc91",
+      "brand": "Samsung",
+      "model": "Galaxy S23 Ultra",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_2d462a1a31a2c242e9a2",
+      "brand": "Samsung",
+      "model": "Galaxy S22",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_69e1242dd86f0d7870b7",
+      "brand": "Samsung",
+      "model": "Galaxy S23",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_11fa2c2f7f71c4f902b9",
+      "brand": "Samsung",
+      "model": "Galaxy S23",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_178a39c5004cc677f75f",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro",
+      "variant": "128GB"
+    },
+    {
+      "id": "product_b83f99bc99caf6f17cdc",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_4cc4e81bf5bc84c1d33a",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_8d09e34a0a8741f20c78",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_d6cb8e3801f7f4a38606",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro Max",
+      "variant": "128GB"
+    },
+    {
+      "id": "product_6878f89dfa5c4484c20c",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro Max",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_a5eaca6ad9affa49b0bf",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro Max",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_5996ba19051ef42d0a30",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro Max",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_a6d82ebd2f8f9e1f3ab0",
+      "brand": "Apple",
+      "model": "MacBook Air M4",
+      "variant": "13인치"
+    },
+    {
+      "id": "product_2036cd6e1d7ba321fddd",
+      "brand": "Apple",
+      "model": "MacBook Air M4",
+      "variant": "15인치"
+    },
+    {
+      "id": "product_43e3a3060a9fa22b6693",
+      "brand": "Apple",
+      "model": "MacBook Pro M4 Pro",
+      "variant": "14인치"
+    },
+    {
+      "id": "product_9bfcbff5eb22160aa640",
+      "brand": "Apple",
+      "model": "MacBook Pro M4 Pro",
+      "variant": "16인치"
+    },
+    {
+      "id": "product_74f62543ba71f1becec4",
+      "brand": "Apple",
+      "model": "MacBook Pro M4 Max",
+      "variant": "14인치"
+    },
+    {
+      "id": "product_2d69f56e6ad8445476cc",
+      "brand": "Apple",
+      "model": "MacBook Pro M4 Max",
+      "variant": "16인치"
+    },
+    {
+      "id": "product_c841687b8e44e9ef2444",
+      "brand": "Apple",
+      "model": "Apple Watch Series 10",
+      "variant": "42mm GPS"
+    },
+    {
+      "id": "product_161ead446784241c52dd",
+      "brand": "Apple",
+      "model": "Apple Watch Series 10",
+      "variant": "42mm Cellular"
+    },
+    {
+      "id": "product_9d02c10eb252385dd5aa",
+      "brand": "Apple",
+      "model": "Apple Watch Series 10",
+      "variant": "46mm GPS"
+    },
+    {
+      "id": "product_f848925e901675096132",
+      "brand": "Apple",
+      "model": "Apple Watch Series 10",
+      "variant": "46mm Cellular"
+    },
+    {
+      "id": "product_277fe458cdd3d462ede7",
+      "brand": "Apple",
+      "model": "Apple Watch Ultra 2",
+      "variant": "49mm"
+    },
+    {
+      "id": "product_602e486fe91389591d24",
+      "brand": "RICOH",
+      "model": "Ricoh GR IV",
+      "variant": "일반형"
+    },
+    {
+      "id": "product_b6f13028c120d357ec68",
+      "brand": "SONY",
+      "model": "Sony RX100 VII",
+      "variant": "본체"
+    },
+    {
+      "id": "product_1f4f979f8c79a0eba4e5",
+      "brand": "Panasonic",
+      "model": "Panasonic TZ99 / ZS99",
+      "variant": "본체"
+    },
+    {
+      "id": "product_c9f7529a246cda8250f8",
+      "brand": "OM SYSTEM",
+      "model": "OM System TG-7",
+      "variant": "본체"
+    },
+    {
+      "id": "product_c2eda16aa4b553aca5c3",
+      "brand": "GoPro",
+      "model": "GoPro MISSION 1",
+      "variant": "본체"
+    },
+    {
+      "id": "product_17e431e895cd79bab9c5",
+      "brand": "GoPro",
+      "model": "GoPro MISSION 1 PRO",
+      "variant": "본체"
+    },
+    {
+      "id": "product_8ced80dbdf0f022d0fc8",
+      "brand": "GoPro",
+      "model": "GoPro HERO13 Black",
+      "variant": "본체"
+    },
+    {
+      "id": "product_e532951438e427432724",
+      "brand": "Insta360",
+      "model": "Insta360 X6",
+      "variant": "본체"
+    },
+    {
+      "id": "product_bd0aa858f0f503b42ad8",
+      "brand": "DJI",
+      "model": "DJI Mini 5 Pro",
+      "variant": "스탠다드"
+    },
+    {
+      "id": "product_d44d30a357a09cca9594",
+      "brand": "DJI",
+      "model": "DJI Mini 5 Pro",
+      "variant": "플라이 모어"
+    },
+    {
+      "id": "product_89d4c5088f05f7323ca0",
+      "brand": "DJI",
+      "model": "DJI Air 3S",
+      "variant": "스탠다드"
+    },
+    {
+      "id": "product_4026a4e183d03d2da177",
+      "brand": "DJI",
+      "model": "DJI Air 3S",
+      "variant": "플라이 모어"
+    },
+    {
+      "id": "product_ecea51b0f50c7543b726",
+      "brand": "DJI",
+      "model": "DJI Mavic 4 Pro",
+      "variant": "스탠다드"
+    },
+    {
+      "id": "product_575751960d4790f830ce",
+      "brand": "DJI",
+      "model": "DJI Mavic 4 Pro",
+      "variant": "플라이 모어"
     }
   ]
 }

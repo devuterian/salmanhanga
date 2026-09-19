@@ -100,6 +100,13 @@ def upsert_product(
     return identifier
 
 
+def sync_catalog(connection: sqlite3.Connection) -> None:
+    created_at = iso(datetime.now(timezone.utc))
+    for item in json.loads(CATALOG_PATH.read_text())["products"]:
+        upsert_product(connection, item["brand"], item["model"], item["variant"], created_at)
+    connection.commit()
+
+
 def upsert_seller(
     connection: sqlite3.Connection,
     marketplace: str,
@@ -196,8 +203,9 @@ def import_legacy(connection: sqlite3.Connection) -> None:
     catalog = json.loads(CATALOG_PATH.read_text())["products"]
     catalog_keys = {(item["brand"], item["model"], item["variant"]) for item in catalog}
     visible_keys = {(row["brand"], row["model"], row.get("variant", "")) for row in rows}
-    if catalog_keys != visible_keys:
-        raise ValueError("상품 카탈로그와 레거시 사이트의 상품 목록이 일치하지 않습니다")
+    missing_keys = visible_keys - catalog_keys
+    if missing_keys:
+        raise ValueError("레거시 사이트 상품이 상품 카탈로그에 없습니다")
     as_of = parse_time(legacy["as_of_kst"])
     assert as_of is not None
     as_of_text = iso(as_of)
@@ -642,12 +650,16 @@ def main() -> None:
     args = parser.parse_args()
     connection = connect(args.db)
     migrate(connection)
+    sync_catalog(connection)
     if args.command == "bootstrap":
         import_legacy(connection)
-        for path in sorted((ROOT / "data" / "imports").glob("*.json")):
-            if path.name.startswith("legacy-"):
-                continue
-            payload = json.loads(path.read_text())
+        imports = [
+            (path, json.loads(path.read_text()))
+            for path in (ROOT / "data" / "imports").glob("*.json")
+            if not path.name.startswith("legacy-")
+        ]
+        imports.sort(key=lambda item: parse_time(item[1]["fetched_at"]) or datetime.min.replace(tzinfo=timezone.utc))
+        for path, payload in imports:
             ingest_payload(connection, payload, str(path.relative_to(ROOT)))
             connection.execute("DELETE FROM price_guide_rows WHERE pricing_run_id = ?", (payload["run_id"],))
             connection.execute("DELETE FROM pricing_runs WHERE id = ?", (payload["run_id"],))

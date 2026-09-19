@@ -67,13 +67,31 @@ ALIASES = {
     "Fujifilm X100VI": ("fujifilmx100vi", "후지필름x100vi", "후지x100vi", "x100vi"),
     "Ricoh GR III": ("ricohgriii", "리코griii", "gr3"),
     "Ricoh GR IIIx": ("ricohgriiix", "리코griiix", "gr3x"),
+    "Ricoh GR IV": ("ricohgriv", "리코griv", "리코gr4", "gr4"),
+    "Sony RX100 VII": ("sonyrx100vii", "소니rx100vii", "rx100vii", "rx100m7"),
+    "Panasonic TZ99 / ZS99": ("panasonictz99", "panasoniczs99", "lumixtz99", "lumixzs99", "루믹스tz99", "루믹스zs99"),
+    "OM System TG-7": ("omsystemtg7", "올림푸스tg7", "toughtg7", "tg7"),
+    "GoPro MISSION 1": ("gopromission1", "고프로미션1", "mission1"),
+    "GoPro MISSION 1 PRO": ("gopromission1pro", "고프로미션1프로", "mission1pro"),
+    "GoPro HERO13 Black": ("goprohero13black", "고프로히어로13블랙", "고프로13블랙", "hero13black"),
+    "Insta360 X6": ("insta360x6", "인스타360x6"),
+    "DJI Mini 5 Pro": ("djimini5pro", "dji미니5프로", "미니5프로"),
+    "DJI Air 3S": ("djiair3s", "dji에어3s", "에어3s"),
+    "DJI Mavic 4 Pro": ("djimavic4pro", "dji매빅4프로", "매빅4프로"),
+    "iPhone 14 Pro": ("iphone14pro", "아이폰14프로"),
+    "iPhone 14 Pro Max": ("iphone14promax", "아이폰14프로맥스"),
+    "MacBook Air M4": ("macbookairm4", "맥북에어m4"),
+    "MacBook Pro M4 Pro": ("macbookprom4pro", "맥북프로m4pro", "맥북프로m4프로"),
+    "MacBook Pro M4 Max": ("macbookprom4max", "맥북프로m4max", "맥북프로m4맥스"),
+    "Apple Watch Series 10": ("applewatchseries10", "applewatch10", "애플워치시리즈10", "애플워치10"),
+    "Apple Watch Ultra 2": ("applewatchultra2", "애플워치울트라2"),
 }
 
 BLOCKED = re.compile(
     r"삽니다|구매합니다|구해요|매입|최고가|대여|렌탈|교환원함|부품용|수리용|고장|파손|"
-    r"액정\s*(불량|깨짐)|번인|잔상|터치\s*불가|박스만|박스\s*단품|케이스|필름|보호유리|"
+    r"액정\s*(불량|깨짐)|(?<!무)번인|(?<!무)잔상|터치\s*불가|박스만|박스\s*단품|케이스|필름|보호유리|"
     r"배터리\s*(단품|만)|충전기\s*(단품|만)|스트랩|마운트|커버|모형|목업|"
-    r"노트북|완본체|데스크탑|게이밍\s*(컴퓨터|pc)|조립\s*pc|교환|"
+    r"완본체|데스크탑|게이밍\s*(컴퓨터|pc)|조립\s*pc|교환|"
     r"케이지|뷰파인더|메인보드|lcd\s*멍|액정\s*멍|레노버|리전\d|레이저\s*블레이드",
     re.IGNORECASE,
 )
@@ -119,6 +137,13 @@ def model_matches(model: str, title: str) -> bool:
         "Panasonic S5 II": ("s5iix", "s5m2x"),
         "Fujifilm X100V": ("x100vi",),
         "Ricoh GR III": ("griiix", "gr3x"),
+        "Ricoh GR IV": ("grivhdf", "gr4hdf", "grii", "gr3"),
+        "GoPro MISSION 1": ("mission1pro",),
+        "iPhone 14 Pro": ("iphone14promax", "아이폰14프로맥스", "아이폰14promax"),
+        "MacBook Air M4": ("macbookprom4", "맥북프로m4"),
+        "MacBook Pro M4 Pro": ("m4max", "m4맥스"),
+        "MacBook Pro M4 Max": ("m4pro", "m4프로"),
+        "Apple Watch Series 10": ("ultra", "울트라"),
     }
     if model == "Fujifilm X100VI" and re.search(r"x100v(?!i)", text):
         return False
@@ -126,17 +151,19 @@ def model_matches(model: str, title: str) -> bool:
 
 
 def capacity(title: str) -> str | None:
-    text = title.casefold().replace(" ", "")
-    match = re.search(r"(?<!\d)(1)(?:tb|테라|t)(?!\w)", text)
+    text = title.casefold()
+    match = re.search(r"(?<!\d)(1)\s*(?:tb|테라|t)(?![a-z0-9])", text)
     if match:
         return "1TB"
-    match = re.search(r"(?<!\d)(128|256|512)(?:gb|기가|g)?(?!\d)", text)
+    match = re.search(r"(?<!\d)(128|256|512)\s*(?:gb|기가|g)?(?!\d)", text)
     return f"{match.group(1)}GB" if match else None
 
 
 def choose_variant(model: str, variants: list[str], title: str) -> str | None:
     if all(value in {"128GB", "256GB", "512GB", "1TB"} for value in variants):
         found = capacity(title)
+        if found is None and len(variants) == 1:
+            return variants[0]
         return found if found in variants else None
     if model == "RTX 3080":
         text = compact(title)
@@ -160,6 +187,22 @@ def choose_variant(model: str, variants: list[str], title: str) -> str | None:
         if "브이로그" in text or "vlog" in text or "풀세트" in text or "세트" in text:
             return "브이로그/세트"
         return "스탠다드"
+    if model.startswith("DJI ") and set(variants) == {"스탠다드", "플라이 모어"}:
+        return "플라이 모어" if re.search(r"플라이\s*모어|fly\s*more|콤보|combo", title, re.IGNORECASE) else "스탠다드"
+    if model.startswith("MacBook"):
+        text = compact(title)
+        for size in ("13", "14", "15", "16"):
+            if size in text and f"{size}인치" in variants:
+                return f"{size}인치"
+        return None
+    if model == "Apple Watch Series 10":
+        text = compact(title)
+        size = next((value for value in ("42", "46") if value in text), None)
+        if not size:
+            return None
+        network = "Cellular" if any(value in text for value in ("cellular", "셀룰러", "lte")) else "GPS"
+        variant = f"{size}mm {network}"
+        return variant if variant in variants else None
     return variants[0]
 
 
@@ -171,6 +214,22 @@ def minimum_price(product: dict) -> int:
             "RTX 4080": 800_000, "RTX 4090": 1_500_000, "RTX 5060": 300_000,
             "RTX 5070": 600_000, "RTX 5080": 1_200_000, "RTX 5090": 2_000_000,
         }[model]
+    if model.startswith("MacBook"):
+        return 700_000
+    if model.startswith("DJI Mini"):
+        return 500_000
+    if model.startswith("DJI Air"):
+        return 700_000
+    if model.startswith("DJI Mavic"):
+        return 1_500_000
+    if model in {"Ricoh GR IV", "Sony RX100 VII"}:
+        return 500_000
+    if model in {"Panasonic TZ99 / ZS99", "OM System TG-7", "Insta360 X6"}:
+        return 300_000
+    if model.startswith("GoPro MISSION"):
+        return 350_000
+    if model == "GoPro HERO13 Black":
+        return 200_000
     return {
         "NVIDIA": 150_000,
         "DJI": 100_000,
@@ -182,6 +241,8 @@ def minimum_price(product: dict) -> int:
 
 def comparable(product: dict, title: str, description: str | None, price: int) -> bool:
     if price < minimum_price(product) or BLOCKED.search(title):
+        return False
+    if product["model"].startswith("RTX ") and re.search(r"노트북|랩탑|laptop", title, re.IGNORECASE):
         return False
     if product["model"] == "Ricoh GR III" and "hdf" in title.casefold():
         return False
