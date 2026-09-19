@@ -2,7 +2,7 @@
 
 중고 기기의 `판매중 최저가 → 판매중-안전 → 6개월 최저 → 3개월 평균`을 근거 매물 링크와 함께 관리하는 가격 가이드입니다.
 
-현재 공개 사이트: https://salmanhanga.nyaanimdesu.chatgpt.site
+현재 공개 사이트: https://devuterian.github.io/salmanhanga/
 
 **JSON과 JSON Schema가 원본**입니다. SQLite는 JSON 원본을 빠르게 검색하고 가격표를 계산하기 위해 재생성하는 로컬 캐시입니다.
 
@@ -20,7 +20,8 @@
 ```text
 config/             JSON으로 관리하는 가격 계산 규칙
 data/catalog/       JSON 상품 카탈로그
-data/imports/       MCP 원본·레거시 수집 스냅샷
+data/raw/           MCP가 돌려준 원본 JSON
+data/imports/       정규화한 매물·레거시 수집 스냅샷
 db/migrations/      재현 가능한 SQLite 스키마
 docs/               데이터 모델과 판정 기준
 schemas/            수집·안전거래·출력 JSON 계약
@@ -43,22 +44,26 @@ make PYTHON=.venv/bin/python test
 make PYTHON=.venv/bin/python verify
 ```
 
-`make bootstrap`은 마이그레이션과 보존된 스냅샷으로 `var/salmanhanga.sqlite`를 만듭니다. DB 파일은 결과물이므로 커밋하지 않습니다.
+`make bootstrap`은 마이그레이션과 모든 수집 스냅샷으로 `var/salmanhanga.sqlite`를 다시 만듭니다. DB 파일은 결과물이므로 커밋하지 않습니다.
 
 ## 새 MCP 수집 반영
 
-1. MCP 응답을 `schemas/listing-import.schema.json` 구조로 정리합니다.
-2. 원본 파일을 `data/imports/YYYY-MM-DD-이름.json`에 커밋합니다.
-3. DB에 넣고 기준 시각으로 가격표를 계산합니다.
-4. `dist/`를 다시 만든 뒤 테스트합니다.
+1. MCP 원본을 `data/raw/`에 저장하고 `schemas/mcp-refresh-raw.schema.json`으로 검사합니다.
+2. `scripts/normalize_mcp_refresh.py`로 `schemas/listing-import.schema.json` 형태를 만듭니다.
+3. `make bootstrap`으로 DB와 가격표를 다시 계산합니다.
+4. `dist/`를 만든 뒤 테스트합니다.
 
 ```bash
 .venv/bin/python scripts/validate_json.py
-python3 scripts/manage_db.py ingest data/imports/2026-09-21-example.json
-python3 scripts/manage_db.py compute --as-of 2026-09-21T12:00:00+09:00
-python3 scripts/manage_db.py build
+.venv/bin/python scripts/normalize_mcp_refresh.py \
+  data/raw/mcp-full-refresh-2026-09-20.json \
+  data/imports/mcp-full-refresh-2026-09-20.json
+make PYTHON=.venv/bin/python bootstrap
+make PYTHON=.venv/bin/python build
 make test
-python3 scripts/manage_db.py verify
+make PYTHON=.venv/bin/python verify
 ```
+
+현재 MCP는 판매자의 안전거래 횟수를 주지 않습니다. 그래서 해당 판매자는 모두 `주의 · 안전거래 이력 확인불가`로 표시하고 `판매중-안전`에는 넣지 않습니다. 중고나라의 판매 이력 목록도 이번 수집에서는 판매중 목록과 동일하게 내려와, 잘못된 통계를 만들지 않도록 6개월 최저와 3개월 평균에서 제외했습니다.
 
 테이블별 역할과 안전 판정 방식은 [데이터 모델](docs/data-model.md)에 정리돼 있습니다.

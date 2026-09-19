@@ -68,6 +68,8 @@ def validate_catalog() -> None:
 def main() -> None:
     validate(ROOT / "config" / "pricing-rules.json", "pricing-rules.schema.json")
     validate_catalog()
+    for path in sorted((ROOT / "data" / "raw").glob("*.json")):
+        validate(path, "mcp-refresh-raw.schema.json")
     for path in sorted((ROOT / "data" / "imports").glob("*.json")):
         schema = (
             "legacy-price-guide.schema.json"

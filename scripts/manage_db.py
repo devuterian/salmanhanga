@@ -621,6 +621,15 @@ def main() -> None:
     migrate(connection)
     if args.command == "bootstrap":
         import_legacy(connection)
+        for path in sorted((ROOT / "data" / "imports").glob("*.json")):
+            if path.name.startswith("legacy-"):
+                continue
+            payload = json.loads(path.read_text())
+            ingest_payload(connection, payload, str(path.relative_to(ROOT)))
+            connection.execute("DELETE FROM price_guide_rows WHERE pricing_run_id = ?", (payload["run_id"],))
+            connection.execute("DELETE FROM pricing_runs WHERE id = ?", (payload["run_id"],))
+            connection.commit()
+            compute_price_guide(connection, payload["fetched_at"], payload["run_id"])
     elif args.command == "ingest":
         ingest_payload(
             connection,

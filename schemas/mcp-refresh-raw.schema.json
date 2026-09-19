@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/mcp-refresh-raw.schema.json",
+  "title": "살만한가 MCP 원본 수집",
+  "type": "object",
+  "required": ["schema_version", "run_id", "fetched_at", "queries"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "fetched_at": {"type": "string", "format": "date-time"},
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model", "joongna", "bunjang"],
+        "properties": {
+          "model": {"type": "string", "minLength": 1},
+          "joongna": {"type": "object"},
+          "bunjang": {"type": "object"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
