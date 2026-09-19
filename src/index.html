@@ -5,12 +5,12 @@
 <meta name="theme-color" content="#f4f6f3">
 <title>살만한가 · 중고 시세표</title>
 <style>
-:root{--bg:#f4f6f3;--paper:#fff;--ink:#17241f;--muted:#66746e;--line:#dfe5e1;--accent:#126451;--soft:#e9f1ed;--warn:#8a4b08;--warnbg:#fff3df}
-@media(prefers-color-scheme:dark){:root{--bg:#111a17;--paper:#18231f;--ink:#e8f1ed;--muted:#9baca4;--line:#33423b;--accent:#8fd6bb;--soft:#21352d;--warn:#f2c27f;--warnbg:#392d1d}}
+:root{--bg:#f4f6f3;--paper:#fff;--ink:#17241f;--muted:#66746e;--line:#dfe5e1;--accent:#126451;--soft:#e9f1ed;--warn:#8a4b08;--warnbg:#fff3df;--hot:#b42318;--hotbg:#fee4e2;--cool:#175cd3;--coolbg:#eaf2ff}
+@media(prefers-color-scheme:dark){:root{--bg:#111a17;--paper:#18231f;--ink:#e8f1ed;--muted:#9baca4;--line:#33423b;--accent:#8fd6bb;--soft:#21352d;--warn:#f2c27f;--warnbg:#392d1d;--hot:#ffb4ab;--hotbg:#442521;--cool:#a9c7ff;--coolbg:#1e304d}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}a{color:var(--accent)}header{max-width:1500px;margin:auto;padding:34px 28px 18px}h1{font-size:34px;letter-spacing:-.04em;margin:0}header p{color:var(--muted);max-width:880px;margin:8px 0 0}
 main{max-width:1500px;margin:auto;padding:0 28px 56px}.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(14px);padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px}
-input,select,button{font:inherit;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:11px 12px}button{cursor:pointer}.meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px;padding:16px 0}.notice{background:var(--warnbg);color:var(--warn);padding:13px 15px;border-radius:10px;margin-bottom:16px}
-.tablewrap{overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:1180px}th,td{padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{position:sticky;top:73px;background:var(--paper);z-index:3;color:var(--muted);font-size:12px;font-weight:650}td.price{font-variant-numeric:tabular-nums;font-weight:750;white-space:nowrap}td.model{font-weight:700}.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:11px;background:var(--soft);color:var(--accent);white-space:nowrap}.warn{background:var(--warnbg);color:var(--warn)}.muted{color:var(--muted)}.note{max-width:300px;font-size:12px;color:var(--muted)}.link{font-size:12px;white-space:nowrap}tr:hover td{background:color-mix(in srgb,var(--soft) 55%,transparent)}.empty{padding:35px;text-align:center;color:var(--muted)}
+input,select,button{font:inherit;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:11px 12px}button{cursor:pointer}.meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px;padding:16px 0}.notice{background:var(--warnbg);color:var(--warn);padding:13px 15px;border-radius:10px;margin-bottom:8px}.benchmark{background:var(--soft);color:var(--muted);padding:11px 15px;border-radius:10px;margin-bottom:16px;font-size:13px}
+.tablewrap{overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:1320px}th,td{padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{position:sticky;top:73px;background:var(--paper);z-index:3;color:var(--muted);font-size:12px;font-weight:650}td.price{font-variant-numeric:tabular-nums;font-weight:750;white-space:nowrap}td.model{font-weight:700}.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:11px;background:var(--soft);color:var(--accent);white-space:nowrap}.warn{background:var(--warnbg);color:var(--warn)}.deal-hot{background:var(--hotbg);color:var(--hot)}.deal-cool{background:var(--coolbg);color:var(--cool)}.deal-detail{font-size:11px;color:var(--muted);margin-top:4px;white-space:nowrap}.muted{color:var(--muted)}.note{max-width:300px;font-size:12px;color:var(--muted)}.link{font-size:12px;white-space:nowrap}tr:hover td{background:color-mix(in srgb,var(--soft) 55%,transparent)}.empty{padding:35px;text-align:center;color:var(--muted)}
 @media(max-width:760px){header{padding:24px 16px 12px}h1{font-size:27px}main{padding:0 16px 40px}.bar{grid-template-columns:1fr 1fr}.bar input{grid-column:1/-1}th{top:126px}}
 </style>
 </head>
@@ -26,7 +26,7 @@ input,select,button{font:inherit;border:1px solid var(--line);background:var(--p
 <div class="meta"><span>기준: 2026-09-20 KST</span><span id="count"></span><span>판매중은 최근 60일 이내만</span></div>
 <div class="notice">⚠️ 판매자의 과거 안전거래 횟수는 현재 MCP가 제공하지 않습니다. 확인 불가 판매자는 <b>주의</b>로 표시하며, 검증 가능한 비주의 판매자가 없으면 ‘판매중-안전’은 비어 있습니다.</div>
 <div class="tablewrap"><table><thead><tr>
-<th>브랜드</th><th>모델 / 구성</th><th>판매중 최저가</th><th>판매중-안전</th><th>6개월 최저</th><th>3개월 평균</th><th>안전 판정</th><th>비고</th>
+<th>브랜드</th><th>모델 / 구성</th><th>판매중 최저가</th><th>판매중-안전</th><th>6개월 최저</th><th>3개월 평균</th><th>가격 매력도</th><th>안전 판정</th><th>비고</th>
 </tr></thead><tbody id="body"></tbody></table><div id="empty" class="empty" hidden>조건에 맞는 항목이 없습니다.</div></div>
 </main>
 <script>
@@ -36,6 +36,19 @@ const q=document.querySelector('#q'),brand=document.querySelector('#brand'),safe
 [...new Set(DATA.map(x=>x.brand))].forEach(b=>brand.insertAdjacentHTML('beforeend',`<option>${b}</option>`));
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function link(p,u){return p==null?'—':u?`<a href="${esc(u)}" target="_blank" rel="noopener">${won(p)}</a>`:won(p)}
+function deal(x){
+ if(x.current==null||x.avg3==null||!x.n3)return '—';
+ const pct=Math.round((x.current/x.avg3-1)*100),abs=Math.abs(pct);
+ let label,cls='';
+ if(pct<=-15){label='아주 쌈';cls='deal-hot'}
+ else if(pct<=-5){label='싼 편';cls='deal-hot'}
+ else if(pct<5){label='평균 수준'}
+ else if(pct<15){label='비싼 편';cls='deal-cool'}
+ else{label='많이 비쌈';cls='deal-cool'}
+ const comparison=pct===0?'평균과 같음':`평균보다 ${abs}% ${pct<0?'낮음':'높음'}`;
+ const sample=x.n3<5?` · 표본 적음 n=${x.n3}`:` · n=${x.n3}`;
+ return `<span class="pill ${cls}">${label}</span><div class="deal-detail">${comparison}${sample}</div>`;
+}
 function render(){
  const term=q.value.trim().toLowerCase();
  let xs=DATA.filter(x=>(!term||(`${x.model} ${x.variant} ${x.brand}`).toLowerCase().includes(term))&&(!brand.value||x.brand===brand.value));
@@ -49,6 +62,7 @@ function render(){
  <td class="price">${link(x.safe,x.safeUrl)}</td>
  <td class="price">${link(x.low6,x.low6Url)}</td>
  <td class="price">${x.avg3==null?'—':won(x.avg3)+` <span class="muted">n=${x.n3}</span>`}</td>
+ <td>${deal(x)}</td>
  <td><span class="pill ${(x.safety||'').includes('주의')?'warn':''}">${esc(x.safety||'—')}</span></td>
  <td class="note">${esc(x.note||'')}</td></tr>`).join('');
  empty.hidden=xs.length>0;

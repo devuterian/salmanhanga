@@ -465,6 +465,25 @@ def compute_price_guide(
         sold6.sort(key=lambda row: (row["price_krw"], row["listing_url"]))
         low6 = sold6[0] if sold6 else None
         avg3 = round(sum(row["price_krw"] for row in sold3) / len(sold3)) if sold3 else None
+        avg3_sample_size = len(sold3)
+        if avg3 is None:
+            preserved = connection.execute(
+                """
+                SELECT g.avg3_price_krw, g.avg3_sample_size
+                FROM price_guide_rows g
+                JOIN pricing_runs r ON r.id = g.pricing_run_id
+                WHERE g.product_id = ?
+                  AND r.source_kind = 'legacy_snapshot'
+                  AND substr(r.as_of, 1, 10) = substr(?, 1, 10)
+                  AND g.avg3_price_krw IS NOT NULL
+                ORDER BY r.as_of DESC
+                LIMIT 1
+                """,
+                (product["id"], as_of_text),
+            ).fetchone()
+            if preserved is not None:
+                avg3 = preserved["avg3_price_krw"]
+                avg3_sample_size = preserved["avg3_sample_size"]
         if current is None:
             label = "현재 판매중 정상 후보 없음"
         else:
@@ -498,7 +517,7 @@ def compute_price_guide(
                 low6["id"] if low6 else None,
                 low6["price_krw"] if low6 else None,
                 low6["listing_url"] if low6 else None,
-                avg3, len(sold3), label, order,
+                avg3, avg3_sample_size, label, order,
             ),
         )
     connection.commit()
@@ -562,7 +581,9 @@ def build_site(connection: sqlite3.Connection, output: Path) -> None:
     html = re.sub(
         r"⚠️ 판매자의 과거 안전거래 횟수는 현재 MCP가 제공하지 않습니다\..*?</div>",
         "⚠️ 안전거래 0회 또는 이력 확인 불가 판매자는 <b>주의</b>로 표시합니다. "
-        "안전거래 1회 이상이 확인된 판매자 중 최저가를 ‘판매중-안전’에 표시합니다.</div>",
+        "안전거래 1회 이상이 확인된 판매자 중 최저가를 ‘판매중-안전’에 표시합니다.</div>"
+        "<div class=\"benchmark\">가격 매력도는 현재 최저가를 같은 기준일에 보존된 "
+        "최근 3개월 판매완료 평균과 비교합니다. 표본 5건 미만은 참고용으로 표시합니다.</div>",
         html,
         count=1,
     )

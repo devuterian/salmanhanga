@@ -70,6 +70,8 @@ class PricingRulesTest(unittest.TestCase):
             html = (Path(output) / "index.html").read_text()
             self.assertIn("판매중은 최근 25일 이내만", html)
             self.assertIn("안전거래 0회 또는 이력 확인 불가 판매자", html)
+            self.assertIn("가격 매력도", html)
+            self.assertIn("function deal(x)", html)
 
     def test_unavailable_history_is_caution_but_safe_listing_remains(self):
         payload = {
