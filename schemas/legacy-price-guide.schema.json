@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/legacy-price-guide.schema.json",
+  "title": "2026-09-20 레거시 가격표",
+  "type": "object",
+  "required": ["as_of_kst", "status", "rules", "rows"],
+  "properties": {
+    "as_of_kst": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "rules": {
+      "type": "object",
+      "required": ["current_listing_max_age_days", "current_low_order"]
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["brand", "model", "variant", "current_low_temp", "current_safe", "six_month_low", "three_month_avg", "safety_status", "note"],
+        "properties": {
+          "brand": {"type": "string", "minLength": 1},
+          "model": {"type": "string", "minLength": 1},
+          "variant": {"type": "string"},
+          "current_low_temp": {"type": ["integer", "null"], "minimum": 0},
+          "current_low_url": {"type": ["string", "null"], "format": "uri"},
+          "current_safe": {"type": ["integer", "null"], "minimum": 0},
+          "current_safe_url": {"type": ["string", "null"], "format": "uri"},
+          "six_month_low": {"type": ["integer", "null"], "minimum": 0},
+          "six_month_low_url": {"type": ["string", "null"], "format": "uri"},
+          "three_month_avg": {"type": ["integer", "null"], "minimum": 0},
+          "three_month_n": {"type": "integer", "minimum": 0},
+          "recheck_status": {"type": "string"},
+          "note": {"type": "string"},
+          "safety_status": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": true
+}

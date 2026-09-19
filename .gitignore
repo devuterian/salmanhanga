@@ -1,0 +1,6 @@
+var/*.sqlite
+var/*.sqlite-*
+__pycache__/
+*.pyc
+.DS_Store
+.venv/

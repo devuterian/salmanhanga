@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/pricing-rules.schema.json",
+  "title": "살만한가 가격 계산 규칙",
+  "type": "object",
+  "required": [
+    "ruleset_id",
+    "current_listing_max_age_days",
+    "safe_trade_min_count",
+    "caution_when_safe_trade_count_zero",
+    "caution_when_safe_trade_history_unavailable",
+    "current_low_order",
+    "caution_label_zero",
+    "caution_label_unavailable",
+    "safe_label"
+  ],
+  "properties": {
+    "ruleset_id": {"type": "string", "minLength": 1},
+    "current_listing_max_age_days": {"const": 25},
+    "safe_trade_min_count": {"const": 1},
+    "caution_when_safe_trade_count_zero": {"const": true},
+    "caution_when_safe_trade_history_unavailable": {"const": true},
+    "current_low_order": {
+      "const": ["판매중 최저가", "판매중-안전", "6개월 최저", "3개월 평균"]
+    },
+    "caution_label_zero": {"const": "주의 · 안전거래 0회"},
+    "caution_label_unavailable": {"const": "주의 · 안전거래 이력 확인불가"},
+    "safe_label": {"const": "안전거래 이력 확인됨"}
+  },
+  "additionalProperties": false
+}

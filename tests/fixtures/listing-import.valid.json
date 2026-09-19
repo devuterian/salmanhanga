@@ -1,0 +1,36 @@
+{
+  "run_id": "fixture-2026-09-20",
+  "fetched_at": "2026-09-20T12:00:00+09:00",
+  "listings": [
+    {
+      "marketplace": "joongna",
+      "external_listing_id": "fixture-1",
+      "brand": "Test",
+      "model": "Schema Fixture",
+      "variant": "Body",
+      "seller_external_id": "seller-1",
+      "seller_name": "테스트 판매자",
+      "title": "스키마 검증용 매물",
+      "listing_url": "https://web.joongna.com/product/fixture-1",
+      "price_krw": 100000,
+      "state": "active",
+      "listed_at": "2026-09-20T10:00:00+09:00",
+      "updated_at": "2026-09-20T10:00:00+09:00",
+      "sold_at": null,
+      "is_comparable": true,
+      "exclusion_reason": null,
+      "raw": null
+    }
+  ],
+  "seller_safety_checks": [
+    {
+      "marketplace": "joongna",
+      "seller_external_id": "seller-1",
+      "checked_at": "2026-09-20T12:00:00+09:00",
+      "verification_status": "verified",
+      "safe_trade_count": 0,
+      "source_url": "https://web.joongna.com/user/seller-1",
+      "raw": null
+    }
+  ]
+}

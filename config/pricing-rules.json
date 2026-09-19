@@ -1,0 +1,16 @@
+{
+  "ruleset_id": "2026-09-20-v2",
+  "current_listing_max_age_days": 25,
+  "safe_trade_min_count": 1,
+  "caution_when_safe_trade_count_zero": true,
+  "caution_when_safe_trade_history_unavailable": true,
+  "current_low_order": [
+    "판매중 최저가",
+    "판매중-안전",
+    "6개월 최저",
+    "3개월 평균"
+  ],
+  "caution_label_zero": "주의 · 안전거래 0회",
+  "caution_label_unavailable": "주의 · 안전거래 이력 확인불가",
+  "safe_label": "안전거래 이력 확인됨"
+}

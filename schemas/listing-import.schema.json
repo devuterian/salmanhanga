@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/listing-import.schema.json",
+  "title": "살만한가 매물 수집 실행",
+  "type": "object",
+  "required": ["run_id", "fetched_at", "listings"],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "fetched_at": {"type": "string", "format": "date-time"},
+    "listings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["marketplace", "external_listing_id", "brand", "model", "variant", "title", "listing_url", "price_krw", "state"],
+        "properties": {
+          "marketplace": {"enum": ["bunjang", "joongna"]},
+          "external_listing_id": {"type": "string", "minLength": 1},
+          "brand": {"type": "string", "minLength": 1},
+          "model": {"type": "string", "minLength": 1},
+          "variant": {"type": "string"},
+          "seller_external_id": {"type": ["string", "null"]},
+          "seller_name": {"type": ["string", "null"]},
+          "title": {"type": "string", "minLength": 1},
+          "listing_url": {"type": "string", "format": "uri"},
+          "price_krw": {"type": "integer", "minimum": 0},
+          "state": {"enum": ["active", "sold", "removed", "unknown"]},
+          "listed_at": {"type": ["string", "null"], "format": "date-time"},
+          "updated_at": {"type": ["string", "null"], "format": "date-time"},
+          "sold_at": {"type": ["string", "null"], "format": "date-time"},
+          "is_comparable": {"type": "boolean"},
+          "exclusion_reason": {"type": ["string", "null"]},
+          "raw": {"type": ["object", "null"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "seller_safety_checks": {
+      "type": "array",
+      "items": {"$ref": "seller-safety-check.schema.json"}
+    }
+  },
+  "additionalProperties": false
+}

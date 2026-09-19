@@ -1,0 +1,689 @@
+{
+  "schema_version": 1,
+  "products": [
+    {
+      "id": "product_1ffd3db4e8e26e0f3fdb",
+      "brand": "NVIDIA",
+      "model": "RTX 5060",
+      "variant": "8GB"
+    },
+    {
+      "id": "product_bc47bf40825ad9c6fee5",
+      "brand": "NVIDIA",
+      "model": "RTX 3080",
+      "variant": "10GB"
+    },
+    {
+      "id": "product_3e6c6e340f809b53bfc6",
+      "brand": "NVIDIA",
+      "model": "RTX 3080",
+      "variant": "12GB"
+    },
+    {
+      "id": "product_15479073ec8a38c41983",
+      "brand": "NVIDIA",
+      "model": "RTX 3080 Ti",
+      "variant": "12GB"
+    },
+    {
+      "id": "product_14acbd1923943ddd21f7",
+      "brand": "NVIDIA",
+      "model": "RTX 5070",
+      "variant": "12GB"
+    },
+    {
+      "id": "product_cfb0d9903d14e3bd62d0",
+      "brand": "NVIDIA",
+      "model": "RTX 4080",
+      "variant": "16GB"
+    },
+    {
+      "id": "product_df420705e4f1fcffa2e1",
+      "brand": "NVIDIA",
+      "model": "RTX 5080",
+      "variant": "16GB"
+    },
+    {
+      "id": "product_ec01b7d7323c8f88162f",
+      "brand": "NVIDIA",
+      "model": "RTX 3090",
+      "variant": "24GB"
+    },
+    {
+      "id": "product_eb0c78cf9b1305218aae",
+      "brand": "NVIDIA",
+      "model": "RTX 4090",
+      "variant": "24GB"
+    },
+    {
+      "id": "product_3e7cd2fc333bf3f9c5ba",
+      "brand": "NVIDIA",
+      "model": "RTX 5090",
+      "variant": "32GB"
+    },
+    {
+      "id": "product_a96210658ccb80ee261e",
+      "brand": "DJI",
+      "model": "Osmo Action 4",
+      "variant": "강화"
+    },
+    {
+      "id": "product_f7c5ed8b6324ec773b3a",
+      "brand": "DJI",
+      "model": "Osmo Action 4",
+      "variant": "스탠다드/본체"
+    },
+    {
+      "id": "product_0b7964c88d35b98cb493",
+      "brand": "DJI",
+      "model": "Osmo Action 4",
+      "variant": "어드벤처"
+    },
+    {
+      "id": "product_83de24eeac37e1ee2e3f",
+      "brand": "DJI",
+      "model": "Osmo Action 5 Pro",
+      "variant": "강화"
+    },
+    {
+      "id": "product_9db072756100574e17d3",
+      "brand": "DJI",
+      "model": "Osmo Action 5 Pro",
+      "variant": "스탠다드/본체"
+    },
+    {
+      "id": "product_3348fac2d4e7f3b098e7",
+      "brand": "DJI",
+      "model": "Osmo Action 5 Pro",
+      "variant": "어드벤처"
+    },
+    {
+      "id": "product_2f31230336458a1f9b65",
+      "brand": "DJI",
+      "model": "Osmo Action 6",
+      "variant": "강화"
+    },
+    {
+      "id": "product_a5fd2ff03085122288c1",
+      "brand": "DJI",
+      "model": "Osmo Action 6",
+      "variant": "스탠다드/본체"
+    },
+    {
+      "id": "product_067686fe4659eb84895b",
+      "brand": "DJI",
+      "model": "Osmo Action 6",
+      "variant": "어드벤처"
+    },
+    {
+      "id": "product_556c7ba677c85df2f87e",
+      "brand": "DJI",
+      "model": "Osmo Pocket 3",
+      "variant": "브이로그/세트"
+    },
+    {
+      "id": "product_ffb311f95dbb8f43c5a5",
+      "brand": "DJI",
+      "model": "Osmo Pocket 3",
+      "variant": "스탠다드"
+    },
+    {
+      "id": "product_1021a89646682d1289e9",
+      "brand": "DJI",
+      "model": "Osmo Pocket 3",
+      "variant": "크리에이터"
+    },
+    {
+      "id": "product_5ce734b2db52f177935c",
+      "brand": "DJI",
+      "model": "Osmo Pocket 4",
+      "variant": "브이로그/세트"
+    },
+    {
+      "id": "product_2b8f84b03b706ec7d941",
+      "brand": "DJI",
+      "model": "Osmo Pocket 4",
+      "variant": "스탠다드"
+    },
+    {
+      "id": "product_7908dbd8d9f584677d6a",
+      "brand": "DJI",
+      "model": "Osmo Pocket 4",
+      "variant": "크리에이터"
+    },
+    {
+      "id": "product_2e04adb1ef1e1a324afe",
+      "brand": "DJI",
+      "model": "Osmo Pocket 4P",
+      "variant": "브이로그/세트"
+    },
+    {
+      "id": "product_c0e2ca425100950e49ad",
+      "brand": "DJI",
+      "model": "Osmo Pocket 4P",
+      "variant": "스탠다드"
+    },
+    {
+      "id": "product_f92772f41249cfa0bb24",
+      "brand": "DJI",
+      "model": "Osmo Pocket 4P",
+      "variant": "크리에이터"
+    },
+    {
+      "id": "product_5a7579b491e194c1b86c",
+      "brand": "Samsung",
+      "model": "Galaxy S25",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_57f205a6df99af6291dd",
+      "brand": "Samsung",
+      "model": "Galaxy S25",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_4581a7355feb9ca23c35",
+      "brand": "Samsung",
+      "model": "Galaxy S25 Edge",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_f1402f518779c92de0ca",
+      "brand": "Samsung",
+      "model": "Galaxy S25 Edge",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_8f9fd96d7ffffb191a7f",
+      "brand": "Samsung",
+      "model": "Galaxy S25 FE",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_6dd319d80f99fe31d275",
+      "brand": "Samsung",
+      "model": "Galaxy S25 Ultra",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_7aab9b0c149fbd655ac4",
+      "brand": "Samsung",
+      "model": "Galaxy S25 Ultra",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_e03d610f44603665e09b",
+      "brand": "Samsung",
+      "model": "Galaxy S25 Ultra",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_17ff63cfe65a3e0cf8dc",
+      "brand": "Samsung",
+      "model": "Galaxy S25+",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_b0ed31143e7888ce05fd",
+      "brand": "Samsung",
+      "model": "Galaxy S25+",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_148c3bd25fc4d1ea3df6",
+      "brand": "Samsung",
+      "model": "Galaxy S26",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_702be439b0387eb8e842",
+      "brand": "Samsung",
+      "model": "Galaxy S26",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_0c1bd68973419fe63904",
+      "brand": "Samsung",
+      "model": "Galaxy S26 Ultra",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_6ee48aef090c3661d605",
+      "brand": "Samsung",
+      "model": "Galaxy S26 Ultra",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_2f04d92012e1f5cb65d9",
+      "brand": "Samsung",
+      "model": "Galaxy S26 Ultra",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_2ab044f9f1d0fd8139d0",
+      "brand": "Samsung",
+      "model": "Galaxy S26+",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_6a01a2c85788a2dcdba5",
+      "brand": "Samsung",
+      "model": "Galaxy S26+",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_1c6068b2dad363b45b70",
+      "brand": "Samsung",
+      "model": "Galaxy Z Flip7",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_52b864367a5034d07fa6",
+      "brand": "Samsung",
+      "model": "Galaxy Z Flip7",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_62cf8aac56b10d59f0dc",
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold6",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_ee78ab3add924552432c",
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold6",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_84dcde88a493f0bc2612",
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold6",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_936eaf384118020a7985",
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold7",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_32f22f23dcbdc972b6b1",
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold7",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_97835cfd7deec2fc608f",
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold7",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_3f52a87ccff7b5afd030",
+      "brand": "Apple",
+      "model": "iPhone 15 Pro",
+      "variant": "128GB"
+    },
+    {
+      "id": "product_5c2bc756213178dc253e",
+      "brand": "Apple",
+      "model": "iPhone 15 Pro",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_0c5485898bc2ce4db965",
+      "brand": "Apple",
+      "model": "iPhone 15 Pro",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_6c4de62bcc44bdf72800",
+      "brand": "Apple",
+      "model": "iPhone 15 Pro",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_ae33094618fb2103210d",
+      "brand": "Apple",
+      "model": "iPhone 16",
+      "variant": "128GB"
+    },
+    {
+      "id": "product_04eaa1a2efbff63e4760",
+      "brand": "Apple",
+      "model": "iPhone 16",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_0425796ead179236a205",
+      "brand": "Apple",
+      "model": "iPhone 16",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_73196abde673340d6882",
+      "brand": "Apple",
+      "model": "iPhone 16 Plus",
+      "variant": "128GB"
+    },
+    {
+      "id": "product_d409aaafd1c88e505a87",
+      "brand": "Apple",
+      "model": "iPhone 16 Plus",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_ab7bec2827f3c08dbc01",
+      "brand": "Apple",
+      "model": "iPhone 16 Plus",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_313e172dec1a9a99e587",
+      "brand": "Apple",
+      "model": "iPhone 16 Pro",
+      "variant": "128GB"
+    },
+    {
+      "id": "product_b14664c0de5ad8d7d2f3",
+      "brand": "Apple",
+      "model": "iPhone 16 Pro",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_b0a3a3343b2dcf097b4b",
+      "brand": "Apple",
+      "model": "iPhone 16 Pro",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_536b6e5482ccec4acd8a",
+      "brand": "Apple",
+      "model": "iPhone 16 Pro",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_30a4063e5f6f71474e3c",
+      "brand": "Apple",
+      "model": "iPhone 17",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_2d9c6b9555fb2ffaa283",
+      "brand": "Apple",
+      "model": "iPhone 17",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_29b9d6616da2edccc20c",
+      "brand": "Apple",
+      "model": "iPhone 17 Plus",
+      "variant": "모델 확인 필요"
+    },
+    {
+      "id": "product_0eeaf60fce43539cc8f6",
+      "brand": "Apple",
+      "model": "iPhone 17 Pro",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_ba681ef710fc12887a4c",
+      "brand": "Apple",
+      "model": "iPhone 17 Pro",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_15e399fb31dfe54a1c8b",
+      "brand": "Apple",
+      "model": "iPhone 17 Pro",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_8481e3e637592793db3c",
+      "brand": "Apple",
+      "model": "iPhone Air",
+      "variant": "1TB"
+    },
+    {
+      "id": "product_6feb867ad81fdb2d93fb",
+      "brand": "Apple",
+      "model": "iPhone Air",
+      "variant": "256GB"
+    },
+    {
+      "id": "product_2cee08a4cee01e5fed50",
+      "brand": "Apple",
+      "model": "iPhone Air",
+      "variant": "512GB"
+    },
+    {
+      "id": "product_ccf1d633b075e3d04758",
+      "brand": "SONY",
+      "model": "Sony FX3",
+      "variant": "바디"
+    },
+    {
+      "id": "product_484be9a65cb2f6060227",
+      "brand": "SONY",
+      "model": "Sony a6400",
+      "variant": "바디"
+    },
+    {
+      "id": "product_0254734875a0913a3f74",
+      "brand": "SONY",
+      "model": "Sony a6700",
+      "variant": "바디"
+    },
+    {
+      "id": "product_59efec3034b2fa008287",
+      "brand": "SONY",
+      "model": "Sony a7 III",
+      "variant": "바디"
+    },
+    {
+      "id": "product_624e15d74e4a9e19e678",
+      "brand": "SONY",
+      "model": "Sony a7 IV",
+      "variant": "바디"
+    },
+    {
+      "id": "product_4177b352bc25335a2ddd",
+      "brand": "SONY",
+      "model": "Sony a7 V",
+      "variant": "바디"
+    },
+    {
+      "id": "product_f954d6820bc0f004d3fe",
+      "brand": "SONY",
+      "model": "Sony a7C II",
+      "variant": "바디"
+    },
+    {
+      "id": "product_7cade2b4c59043a133fe",
+      "brand": "SONY",
+      "model": "Sony a7CR",
+      "variant": "바디"
+    },
+    {
+      "id": "product_9819fde9e5ce305655ea",
+      "brand": "SONY",
+      "model": "Sony a7R V",
+      "variant": "바디"
+    },
+    {
+      "id": "product_8162cfcfb412c89484cf",
+      "brand": "SONY",
+      "model": "Sony a7R VI",
+      "variant": "바디"
+    },
+    {
+      "id": "product_cd9976dd9dbd220ba1e0",
+      "brand": "Panasonic",
+      "model": "Panasonic GH7",
+      "variant": "바디"
+    },
+    {
+      "id": "product_6acbb498f54fb277a17b",
+      "brand": "Panasonic",
+      "model": "Panasonic S1R II",
+      "variant": "바디"
+    },
+    {
+      "id": "product_0219a0134b9552507938",
+      "brand": "Panasonic",
+      "model": "Panasonic S5 II",
+      "variant": "바디"
+    },
+    {
+      "id": "product_87fad8438a3bed690ab5",
+      "brand": "Panasonic",
+      "model": "Panasonic S5 IIX",
+      "variant": "바디"
+    },
+    {
+      "id": "product_045f4f15f7368e20998a",
+      "brand": "Panasonic",
+      "model": "Panasonic S9",
+      "variant": "바디"
+    },
+    {
+      "id": "product_92a290d0c1bdcac1fe40",
+      "brand": "Insta360",
+      "model": "Insta360 Ace Pro 2",
+      "variant": "본체/번들"
+    },
+    {
+      "id": "product_c6c5b7ff8321782387a6",
+      "brand": "Insta360",
+      "model": "Insta360 GO 3S",
+      "variant": "본체"
+    },
+    {
+      "id": "product_906974081df8d255d3c5",
+      "brand": "Insta360",
+      "model": "Insta360 GO Ultra",
+      "variant": "본체"
+    },
+    {
+      "id": "product_0a2346a8a3d02246ca61",
+      "brand": "Canon",
+      "model": "Canon PowerShot V1",
+      "variant": "본체"
+    },
+    {
+      "id": "product_ae2349b312ffb2cd5d0e",
+      "brand": "Canon",
+      "model": "Canon R1",
+      "variant": "바디"
+    },
+    {
+      "id": "product_8177276e8694649b3df0",
+      "brand": "Canon",
+      "model": "Canon R10",
+      "variant": "바디"
+    },
+    {
+      "id": "product_52a361bb47ac1c8a9792",
+      "brand": "Canon",
+      "model": "Canon R3",
+      "variant": "바디"
+    },
+    {
+      "id": "product_c12470d384db0874ce93",
+      "brand": "Canon",
+      "model": "Canon R5 Mark II",
+      "variant": "바디"
+    },
+    {
+      "id": "product_db0c50bc2e2598f5b10c",
+      "brand": "Canon",
+      "model": "Canon R6 Mark II",
+      "variant": "바디"
+    },
+    {
+      "id": "product_c2f337cbf57c608940e5",
+      "brand": "Canon",
+      "model": "Canon R6 Mark III",
+      "variant": "바디"
+    },
+    {
+      "id": "product_9620e14d8fa781439922",
+      "brand": "Canon",
+      "model": "Canon R7",
+      "variant": "바디"
+    },
+    {
+      "id": "product_bfe2b4e1141159cfe86b",
+      "brand": "Canon",
+      "model": "Canon R8",
+      "variant": "바디"
+    },
+    {
+      "id": "product_6b99cd1fe429ade95b46",
+      "brand": "Nikon",
+      "model": "Nikon Zf",
+      "variant": "바디"
+    },
+    {
+      "id": "product_f267393ee07ed885a8bc",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X-E5",
+      "variant": "바디"
+    },
+    {
+      "id": "product_90bea4bd39ad2037f129",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X-H2S",
+      "variant": "바디"
+    },
+    {
+      "id": "product_293a7e226117786e20be",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X-M5",
+      "variant": "바디"
+    },
+    {
+      "id": "product_69c6214dd6acbb8c8a1a",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X-S20",
+      "variant": "바디"
+    },
+    {
+      "id": "product_e31913df7863467aa363",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X-T5",
+      "variant": "바디"
+    },
+    {
+      "id": "product_0c97a2a6edc813c99ded",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X-T50",
+      "variant": "바디"
+    },
+    {
+      "id": "product_021efc5d9a683ccdb725",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X100V",
+      "variant": "본체"
+    },
+    {
+      "id": "product_b3e55ae37d682eb89085",
+      "brand": "FUJIFILM",
+      "model": "Fujifilm X100VI",
+      "variant": "본체"
+    },
+    {
+      "id": "product_80476d3f9a92a64ddc5e",
+      "brand": "RICOH",
+      "model": "Ricoh GR III",
+      "variant": "일반형"
+    },
+    {
+      "id": "product_d021ac10dd8df7d3b632",
+      "brand": "RICOH",
+      "model": "Ricoh GR IIIx",
+      "variant": "일반형"
+    }
+  ]
+}

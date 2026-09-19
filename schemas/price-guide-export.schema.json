@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/price-guide-export.schema.json",
+  "title": "살만한가 가격표 출력",
+  "type": "object",
+  "required": ["as_of_kst", "rules", "rows"],
+  "properties": {
+    "as_of_kst": {"type": "string"},
+    "rules": {
+      "type": "object",
+      "required": ["ruleset_id", "current_listing_max_age_days", "safe_trade_min_count", "current_low_order"]
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["brand", "model", "variant", "current", "currentUrl", "safe", "safeUrl", "safety", "low6", "low6Url", "avg3", "n3", "note"],
+        "properties": {
+          "brand": {"type": "string", "minLength": 1},
+          "model": {"type": "string", "minLength": 1},
+          "variant": {"type": "string"},
+          "current": {"type": ["integer", "null"], "minimum": 0},
+          "currentUrl": {"type": ["string", "null"], "format": "uri"},
+          "safe": {"type": ["integer", "null"], "minimum": 0},
+          "safeUrl": {"type": ["string", "null"], "format": "uri"},
+          "safety": {"type": "string", "minLength": 1},
+          "low6": {"type": ["integer", "null"], "minimum": 0},
+          "low6Url": {"type": ["string", "null"], "format": "uri"},
+          "avg3": {"type": ["integer", "null"], "minimum": 0},
+          "n3": {"type": "integer", "minimum": 0},
+          "note": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

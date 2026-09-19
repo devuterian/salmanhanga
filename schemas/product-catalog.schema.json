@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/product-catalog.schema.json",
+  "title": "살만한가 상품 카탈로그",
+  "type": "object",
+  "required": ["schema_version", "products"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "products": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "brand", "model", "variant"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^product_[0-9a-f]{20}$"},
+          "brand": {"type": "string", "minLength": 1},
+          "model": {"type": "string", "minLength": 1},
+          "variant": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

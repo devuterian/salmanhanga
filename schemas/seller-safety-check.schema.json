@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/seller-safety-check.schema.json",
+  "title": "판매자 안전거래 확인",
+  "type": "object",
+  "required": ["marketplace", "seller_external_id", "checked_at", "verification_status"],
+  "properties": {
+    "marketplace": {"enum": ["bunjang", "joongna"]},
+    "seller_external_id": {"type": "string", "minLength": 1},
+    "checked_at": {"type": "string", "format": "date-time"},
+    "verification_status": {"enum": ["verified", "unavailable"]},
+    "safe_trade_count": {"type": ["integer", "null"], "minimum": 0},
+    "source_url": {"type": ["string", "null"], "format": "uri"},
+    "raw": {"type": ["object", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"verification_status": {"const": "verified"}}},
+      "then": {"required": ["safe_trade_count"]}
+    },
+    {
+      "if": {"properties": {"verification_status": {"const": "unavailable"}}},
+      "then": {"properties": {"safe_trade_count": {"type": "null"}}}
+    }
+  ],
+  "additionalProperties": false
+}
