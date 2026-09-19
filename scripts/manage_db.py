@@ -579,13 +579,15 @@ def build_site(connection: sqlite3.Connection, output: Path) -> None:
         count=1,
     )
     html = re.sub(
-        r"⚠️ 판매자의 과거 안전거래 횟수는 현재 MCP가 제공하지 않습니다\..*?</div>",
-        "⚠️ 안전거래 0회 또는 이력 확인 불가 판매자는 <b>주의</b>로 표시합니다. "
-        "안전거래 1회 이상이 확인된 판매자 중 최저가를 ‘판매중-안전’에 표시합니다.</div>"
+        r'<div class="notice">.*?</div>',
+        '<div class="notice"><span class="material-symbols-outlined" aria-hidden="true">warning</span><span>'
+        "안전거래 0회 또는 이력 확인 불가 판매자는 <b>주의</b>로 표시합니다. "
+        "안전거래 1회 이상이 확인된 판매자 중 최저가를 ‘판매중-안전’에 표시합니다.</span></div>"
         "<div class=\"benchmark\">가격 매력도는 현재 최저가를 같은 기준일에 보존된 "
         "최근 3개월 판매완료 평균과 비교합니다. 표본 5건 미만은 참고용으로 표시합니다.</div>",
         html,
         count=1,
+        flags=re.DOTALL,
     )
     payload = {
         "as_of_kst": run["as_of"], "status": "normalized",

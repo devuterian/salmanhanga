@@ -74,8 +74,12 @@ class PricingRulesTest(unittest.TestCase):
             self.assertIn("function deal(x)", html)
             self.assertIn('id="sort"', html)
             self.assertIn("낮은 가격순", html)
+            self.assertIn("가격 매력도순", html)
             self.assertIn('id="mobile-list"', html)
             self.assertIn("(a.x.current??Infinity)-(b.x.current??Infinity)", html)
+            self.assertIn("dealScore(a.x)-dealScore(b.x)", html)
+            self.assertIn("Material+Symbols+Outlined", html)
+            self.assertIn('aria-hidden="true">search</span>모델 검색', html)
 
     def test_unavailable_history_is_caution_but_safe_listing_remains(self):
         payload = {
