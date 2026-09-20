@@ -310,6 +310,12 @@ def ingest_payload(
 ) -> None:
     require_fields(payload, {"run_id", "fetched_at", "listings"}, "수집 실행")
     fetched_at = iso(parse_time(payload["fetched_at"]) or datetime.now(SEOUL))
+    connection.execute(
+        "DELETE FROM seller_safety_checks WHERE ingestion_run_id = ?", (payload["run_id"],)
+    )
+    connection.execute(
+        "DELETE FROM listing_observations WHERE ingestion_run_id = ?", (payload["run_id"],)
+    )
     record_ingestion_run(connection, payload["run_id"], fetched_at, payload, source_ref)
     listing_fields = {
         "marketplace", "external_listing_id", "brand", "model", "variant", "title",
@@ -600,17 +606,6 @@ def build_site(connection: sqlite3.Connection, output: Path) -> None:
         html,
         count=1,
     )
-    html = re.sub(
-        r'<div class="notice">.*?</div>',
-        '<div class="notice"><span class="material-symbols-outlined" aria-hidden="true">warning</span><span>'
-        "안전거래 0회 또는 이력 확인 불가 판매자는 <b>주의</b>로 표시합니다. "
-        "안전거래 1회 이상이 확인된 판매자 중 최저가를 ‘판매중-안전’에 표시합니다.</span></div>"
-        "<div class=\"benchmark\">가격 매력도는 현재 최저가를 같은 기준일에 보존된 "
-        "최근 3개월 판매완료 평균과 비교합니다. 신뢰할 수 있는 판매완료 표본이 없으면 빈칸과 사유를 표시합니다.</div>",
-        html,
-        count=1,
-        flags=re.DOTALL,
-    )
     payload = {
         "as_of_kst": run["as_of"], "status": "normalized",
         "rules": rules, "rows": rows,
@@ -634,9 +629,12 @@ def verify(connection: sqlite3.Connection) -> None:
             ):
                 raise ValueError(f"허용되지 않은 매물 링크: {url}")
     html = (ROOT / "dist" / "index.html").read_text()
-    positions = [html.index(label) for label in expected_order]
+    visible_order = ["판매중 최저가", "6개월 최저", "3개월 평균"]
+    positions = [html.index(label) for label in visible_order]
     if positions != sorted(positions):
         raise ValueError("dist 가격 표시 순서가 바뀌었습니다")
+    if "<th>판매중-안전</th>" in html or "priceCell('판매중-안전'" in html:
+        raise ValueError("판매중-안전 열이 화면에 다시 노출됐습니다")
     if "주의 · 안전거래 이력 확인불가" not in html:
         raise ValueError("안전거래 이력 확인불가 표시가 사라졌습니다")
     with tempfile.TemporaryDirectory() as temp:

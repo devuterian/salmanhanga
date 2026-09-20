@@ -57,6 +57,14 @@ class ModelMatchTest(unittest.TestCase):
         product = {"brand": "NVIDIA", "model": "RTX 4080", "variant": "16GB"}
         self.assertFalse(comparable(product, "RTX 4080 노트북", None, 2_000_000))
 
+    def test_rtx_laptop_in_description_stays_excluded(self):
+        product = {"brand": "NVIDIA", "model": "RTX 4090", "variant": "24GB"}
+        self.assertFalse(comparable(product, "RTX 4090", "게이밍 노트북에서 분리한 GPU", 3_000_000))
+
+    def test_rtx_memory_mismatch_stays_excluded(self):
+        product = {"brand": "NVIDIA", "model": "RTX 4090", "variant": "24GB"}
+        self.assertFalse(comparable(product, "RTX 4090 20GB 내용 필독", None, 3_000_000))
+
     def test_single_capacity_and_no_burn_in_wording(self):
         self.assertEqual(choose_variant("Galaxy S22", ["256GB"], "갤럭시 S22 무잔상"), "256GB")
         product = {"brand": "Samsung", "model": "Galaxy S22", "variant": "256GB"}

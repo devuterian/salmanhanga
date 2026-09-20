@@ -242,8 +242,17 @@ def minimum_price(product: dict) -> int:
 def comparable(product: dict, title: str, description: str | None, price: int) -> bool:
     if price < minimum_price(product) or BLOCKED.search(title):
         return False
-    if product["model"].startswith("RTX ") and re.search(r"노트북|랩탑|laptop", title, re.IGNORECASE):
-        return False
+    if product["model"].startswith("RTX "):
+        details = f"{title}\n{description or ''}"
+        if re.search(r"노트북|노트북용|게이밍\s*노트|랩탑|laptop|notebook|mobile\s*gpu", details, re.IGNORECASE):
+            return False
+        expected = re.fullmatch(r"(\d{1,2})GB", product["variant"], re.IGNORECASE)
+        mentioned = {
+            int(value)
+            for value in re.findall(r"(?<!\d)(\d{1,2})\s*(?:GB|G)(?![A-Za-z])", title, re.IGNORECASE)
+        }
+        if expected and mentioned and int(expected.group(1)) not in mentioned:
+            return False
     if product["model"] == "Ricoh GR III" and "hdf" in title.casefold():
         return False
     if product["brand"] == "Insta360" and re.search(r"렌즈|그립", title) and not re.search(r"본체|카메라", title):

@@ -68,8 +68,8 @@ class PricingRulesTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as output:
             build_site(self.connection, Path(output))
             html = (Path(output) / "index.html").read_text()
-            self.assertIn("판매중은 최근 25일 이내만", html)
-            self.assertIn("안전거래 0회 또는 이력 확인 불가 판매자", html)
+            self.assertIn("판매중 기준", html)
+            self.assertIn("안전거래 횟수가 0회이거나 확인되지 않은 판매자", html)
             self.assertIn("가격 매력도", html)
             self.assertIn("function deal(x)", html)
             self.assertIn('id="sort"', html)
@@ -78,8 +78,14 @@ class PricingRulesTest(unittest.TestCase):
             self.assertIn('id="mobile-list"', html)
             self.assertIn("(a.x.current??Infinity)-(b.x.current??Infinity)", html)
             self.assertIn("dealScore(a.x)-dealScore(b.x)", html)
-            self.assertIn("Material+Symbols+Outlined", html)
-            self.assertIn('aria-hidden="true">search</span>모델 검색', html)
+            self.assertIn("55FRIES", html)
+            self.assertIn('icon="solar:magnifer-linear"', html)
+            self.assertNotIn("Material+Symbols+Outlined", html)
+            self.assertIn('value="deal" selected', html)
+            self.assertIn('id="help-dialog"', html)
+            self.assertIn('id="warnings"', html)
+            self.assertNotIn("<th>판매중-안전</th>", html)
+            self.assertNotIn("priceCell('판매중-안전'", html)
 
     def test_unavailable_history_is_caution_but_safe_listing_remains(self):
         payload = {
@@ -97,6 +103,19 @@ class PricingRulesTest(unittest.TestCase):
         self.assertEqual(row["safety"], "주의 · 안전거래 이력 확인불가")
         self.assertEqual(row["safe"], 110)
         self.assertEqual(row["safeUrl"], "https://web.joongna.com/product/verified-safe")
+
+    def test_reingesting_same_run_replaces_removed_observations(self):
+        payload = {
+            "run_id": "replace-fixture", "fetched_at": self.as_of.isoformat(),
+            "listings": [self.listing("removed-on-refresh", 90, 1, None, model="Test Phone")],
+            "seller_safety_checks": [],
+        }
+        ingest_payload(self.connection, payload)
+        payload["listings"] = []
+        ingest_payload(self.connection, payload)
+        run_id = compute_price_guide(self.connection, self.as_of.isoformat(), "replace-fixture-price")
+        row = display_rows(self.connection, run_id)[0]
+        self.assertIsNone(row["current"])
 
     def test_exactly_25_days_is_included(self):
         exact = self.listing("exact-25", 100, 25, "safe-seller", model="Boundary")
