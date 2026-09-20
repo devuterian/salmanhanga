@@ -25,8 +25,8 @@
           "alert_max_price_krw": {"type": ["integer", "null"], "minimum": 100000},
           "alert_keywords": {
             "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
+            "minItems": 1,
+            "maxItems": 1,
             "items": {"type": "string", "minLength": 1}
           }
         },

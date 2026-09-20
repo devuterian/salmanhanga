@@ -153,6 +153,10 @@ def print_json(value: object) -> None:
     print(json.dumps(value, ensure_ascii=False, indent=2))
 
 
+def alerts_by_keyword(items: list[dict]) -> dict[str, dict]:
+    return {item["tagKeywordName"].casefold(): item for item in items}
+
+
 def command_list(_: argparse.Namespace) -> None:
     response = api("GET", "/mypage/pushSetting/keyword")
     print_json(response["data"])
@@ -195,13 +199,13 @@ def command_remove(args: argparse.Namespace) -> None:
     print_json(response.get("data"))
 
 
-def command_sync_discounts(_: argparse.Namespace) -> None:
+def command_sync_discounts(args: argparse.Namespace) -> None:
     paths = sorted(SOLD_AVERAGES_DIR.glob("sold-averages-*.json"))
     if not paths:
         raise ValueError("3개월 판매완료 평균 데이터가 없습니다")
     rows = json.loads(paths[-1].read_text())["rows"]
     current = api("GET", "/mypage/pushSetting/keyword")["data"]["keywordVOS"]
-    by_keyword = {item["tagKeywordName"]: item for item in current}
+    by_keyword = alerts_by_keyword(current)
     updated = []
     skipped = []
     for row in rows:
@@ -210,9 +214,27 @@ def command_sync_discounts(_: argparse.Namespace) -> None:
             skipped.extend(row["alert_keywords"])
             continue
         for keyword in row["alert_keywords"]:
-            item = by_keyword.get(keyword)
+            item = by_keyword.get(keyword.casefold())
             if item is None:
-                skipped.append(keyword)
+                if not args.add_missing:
+                    skipped.append(keyword)
+                    continue
+                api(
+                    "POST",
+                    "/mypage/pushSetting/keywordRedeem",
+                    keyword_payload(
+                        keyword,
+                        min_price=DEFAULT_MIN_PRICE,
+                        max_price=maximum,
+                    ),
+                )
+                updated.append({"keyword": keyword, "max_price": maximum, "added": True})
+                time.sleep(2)
+                continue
+            if (
+                item.get("productStartPrice") == DEFAULT_MIN_PRICE
+                and item.get("productEndPrice") == maximum
+            ):
                 continue
             api(
                 "PUT",
@@ -263,6 +285,7 @@ def build_parser() -> argparse.ArgumentParser:
     sync_parser = subparsers.add_parser(
         "sync-discounts", help="3개월 판매완료 평균보다 15% 낮은 상한으로 동기화"
     )
+    sync_parser.add_argument("--add-missing", action="store_true")
     sync_parser.set_defaults(handler=command_sync_discounts)
     return parser
 
