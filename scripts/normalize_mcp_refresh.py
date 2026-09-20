@@ -287,12 +287,34 @@ def normalize(raw: dict, catalog: dict) -> dict:
         products_by_model.setdefault(product["model"], []).append(product)
     output: dict[tuple[str, str], dict] = {}
     safety: dict[tuple[str, str], dict] = {}
+    quality_issues: list[dict] = []
     for query in raw["queries"]:
         products = products_by_model[query["model"]]
         variants = [product["variant"] for product in products]
+        available = query["joongna"].get("available_listings") or []
+        sold = (query["joongna"].get("sold_price_history") or {}).get("listings") or []
+        active_ids = {str(item["sequence"]) for item in available if item.get("sequence") is not None}
+        sold_ids = {str(item["sequence"]) for item in sold if item.get("sequence") is not None}
+        overlapping_ids = active_ids & sold_ids
+        if overlapping_ids:
+            quality_issues.append(
+                {
+                    "model": query["model"],
+                    "code": "joongna_active_sold_overlap",
+                    "active_count": len(active_ids),
+                    "sold_count": len(sold_ids),
+                    "overlap_count": len(overlapping_ids),
+                    "action": "overlapping_sold_listings_excluded",
+                }
+            )
         datasets = [
-            ("joongna", "active", query["joongna"].get("available_listings") or [], query["joongna"].get("fetched_at")),
-            ("joongna", "sold", (query["joongna"].get("sold_price_history") or {}).get("listings") or [], query["joongna"].get("fetched_at")),
+            ("joongna", "active", available, query["joongna"].get("fetched_at")),
+            (
+                "joongna",
+                "sold",
+                [item for item in sold if str(item.get("sequence")) not in overlapping_ids],
+                query["joongna"].get("fetched_at"),
+            ),
             ("bunjang", "active", query["bunjang"].get("listings") or [], query["bunjang"].get("fetched_at")),
         ]
         for marketplace, state, items, source_fetched_at in datasets:
@@ -306,8 +328,7 @@ def normalize(raw: dict, catalog: dict) -> dict:
                     continue
                 normalized = record(product, marketplace, item, state, source_fetched_at or raw["fetched_at"])
                 key = (marketplace, normalized["external_listing_id"])
-                previous = output.get(key)
-                if previous is None or (previous["state"] != "active" and state == "active"):
+                if key not in output:
                     output[key] = normalized
                 seller_id = normalized["seller_external_id"]
                 if seller_id:
@@ -325,6 +346,7 @@ def normalize(raw: dict, catalog: dict) -> dict:
         "fetched_at": normalized_fetched_at,
         "listings": sorted(output.values(), key=lambda item: (item["brand"], item["model"], item["variant"], item["marketplace"], item["external_listing_id"])),
         "seller_safety_checks": sorted(safety.values(), key=lambda item: (item["marketplace"], item["seller_external_id"])),
+        "quality_issues": quality_issues,
     }
 
 

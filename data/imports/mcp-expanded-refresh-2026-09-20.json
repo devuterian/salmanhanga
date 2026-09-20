@@ -12417,5 +12417,135 @@
         "reason": "MCP 응답에 판매자의 안전거래 횟수가 없음"
       }
     }
+  ],
+  "quality_issues": [
+    {
+      "model": "Galaxy S22 Ultra",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Galaxy S23 Ultra",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Galaxy S22",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Galaxy S23",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "iPhone 14 Pro",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "iPhone 14 Pro Max",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Ricoh GR IV",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Sony RX100 VII",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 18,
+      "sold_count": 18,
+      "overlap_count": 18,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Panasonic TZ99 / ZS99",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 2,
+      "sold_count": 2,
+      "overlap_count": 2,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "DJI Mini 5 Pro",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "DJI Air 3S",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 19,
+      "sold_count": 19,
+      "overlap_count": 19,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "MacBook Air M4",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "MacBook Pro M4 Pro",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 18,
+      "sold_count": 18,
+      "overlap_count": 18,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Apple Watch Ultra 2",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Galaxy S23",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    },
+    {
+      "model": "Galaxy S23",
+      "code": "joongna_active_sold_overlap",
+      "active_count": 20,
+      "sold_count": 20,
+      "overlap_count": 20,
+      "action": "overlapping_sold_listings_excluded"
+    }
   ]
 }

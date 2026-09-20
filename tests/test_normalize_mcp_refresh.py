@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.normalize_mcp_refresh import capacity, choose_variant, comparable, model_matches
+from scripts.normalize_mcp_refresh import capacity, choose_variant, comparable, model_matches, normalize
 
 
 class ModelMatchTest(unittest.TestCase):
@@ -65,6 +65,58 @@ class ModelMatchTest(unittest.TestCase):
     def test_terabyte_capacity_before_korean_text(self):
         self.assertEqual(capacity("갤럭시 S23 울트라 1TB 그린"), "1TB")
         self.assertEqual(capacity("갤럭시 S23 울트라 1테라 S급"), "1TB")
+
+    def test_active_sold_overlap_is_recorded_and_not_imported_as_sold(self):
+        item = {
+            "sequence": 123,
+            "title": "캐논 R10 바디",
+            "price_krw": 800_000,
+            "listing_url": "https://web.joongna.com/product/123",
+            "sorted_at": "2026-09-20 12:00:00",
+        }
+        raw = {
+            "run_id": "overlap-fixture",
+            "fetched_at": "2026-09-20T12:00:00+09:00",
+            "queries": [{
+                "model": "Canon R10",
+                "joongna": {
+                    "fetched_at": "2026-09-20T12:00:00+09:00",
+                    "available_listings": [item],
+                    "sold_price_history": {"listings": [item]},
+                },
+                "bunjang": {"listings": []},
+            }],
+        }
+        catalog = {"products": [{"brand": "Canon", "model": "Canon R10", "variant": "바디"}]}
+        result = normalize(raw, catalog)
+        self.assertEqual([listing["state"] for listing in result["listings"]], ["active"])
+        self.assertEqual(result["quality_issues"][0]["overlap_count"], 1)
+
+    def test_non_overlapping_sold_listing_remains_available_for_history(self):
+        sold = {
+            "sequence": 456,
+            "title": "캐논 R10 바디",
+            "price_krw": 700_000,
+            "listing_url": "https://web.joongna.com/product/456",
+            "sorted_at": "2026-09-10 12:00:00",
+        }
+        raw = {
+            "run_id": "sold-fixture",
+            "fetched_at": "2026-09-20T12:00:00+09:00",
+            "queries": [{
+                "model": "Canon R10",
+                "joongna": {
+                    "fetched_at": "2026-09-20T12:00:00+09:00",
+                    "available_listings": [],
+                    "sold_price_history": {"listings": [sold]},
+                },
+                "bunjang": {"listings": []},
+            }],
+        }
+        catalog = {"products": [{"brand": "Canon", "model": "Canon R10", "variant": "바디"}]}
+        result = normalize(raw, catalog)
+        self.assertEqual([listing["state"] for listing in result["listings"]], ["sold"])
+        self.assertEqual(result["quality_issues"], [])
 
 
 if __name__ == "__main__":

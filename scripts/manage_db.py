@@ -472,26 +472,42 @@ def compute_price_guide(
                 break
         sold6.sort(key=lambda row: (row["price_krw"], row["listing_url"]))
         low6 = sold6[0] if sold6 else None
+        low6_listing_id = low6["id"] if low6 else None
+        low6_price = low6["price_krw"] if low6 else None
+        low6_url = low6["listing_url"] if low6 else None
         avg3 = round(sum(row["price_krw"] for row in sold3) / len(sold3)) if sold3 else None
         avg3_sample_size = len(sold3)
-        if avg3 is None:
-            preserved = connection.execute(
-                """
-                SELECT g.avg3_price_krw, g.avg3_sample_size
-                FROM price_guide_rows g
-                JOIN pricing_runs r ON r.id = g.pricing_run_id
-                WHERE g.product_id = ?
-                  AND r.source_kind = 'legacy_snapshot'
-                  AND substr(r.as_of, 1, 10) = substr(?, 1, 10)
-                  AND g.avg3_price_krw IS NOT NULL
-                ORDER BY r.as_of DESC
-                LIMIT 1
-                """,
-                (product["id"], as_of_text),
-            ).fetchone()
-            if preserved is not None:
+        preserved = connection.execute(
+            """
+            SELECT g.low6_listing_id, g.low6_price_krw, g.low6_url,
+                   g.avg3_price_krw, g.avg3_sample_size, g.note
+            FROM price_guide_rows g
+            JOIN pricing_runs r ON r.id = g.pricing_run_id
+            WHERE g.product_id = ?
+              AND r.source_kind = 'legacy_snapshot'
+              AND substr(r.as_of, 1, 10) = substr(?, 1, 10)
+            ORDER BY r.as_of DESC
+            LIMIT 1
+            """,
+            (product["id"], as_of_text),
+        ).fetchone()
+        if low6_price is None and preserved is not None and preserved["low6_price_krw"] is not None:
+            low6_listing_id = preserved["low6_listing_id"]
+            low6_price = preserved["low6_price_krw"]
+            low6_url = preserved["low6_url"]
+        if avg3 is None and preserved is not None:
+            if preserved["avg3_price_krw"] is not None:
                 avg3 = preserved["avg3_price_krw"]
                 avg3_sample_size = preserved["avg3_sample_size"]
+        note = preserved["note"] if preserved is not None else ""
+        missing_history = []
+        if low6_price is None:
+            missing_history.append("6개월 판매완료 최저가")
+        if avg3 is None:
+            missing_history.append("3개월 판매완료 평균가")
+        if missing_history:
+            missing_note = " · ".join(missing_history) + " 표본 미확보"
+            note = f"{note} {missing_note}".strip()
         if current is None:
             label = "현재 판매중 정상 후보 없음"
         else:
@@ -512,7 +528,7 @@ def compute_price_guide(
               safe_listing_id, safe_price_krw, safe_url,
               low6_listing_id, low6_price_krw, low6_url,
               avg3_price_krw, avg3_sample_size, safety_label, note, sort_order
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 run_id, product["id"],
@@ -522,10 +538,8 @@ def compute_price_guide(
                 safe["id"] if safe else None,
                 safe["price_krw"] if safe else None,
                 safe["listing_url"] if safe else None,
-                low6["id"] if low6 else None,
-                low6["price_krw"] if low6 else None,
-                low6["listing_url"] if low6 else None,
-                avg3, avg3_sample_size, label, order,
+                low6_listing_id, low6_price, low6_url,
+                avg3, avg3_sample_size, label, note, order,
             ),
         )
     connection.commit()
@@ -592,7 +606,7 @@ def build_site(connection: sqlite3.Connection, output: Path) -> None:
         "안전거래 0회 또는 이력 확인 불가 판매자는 <b>주의</b>로 표시합니다. "
         "안전거래 1회 이상이 확인된 판매자 중 최저가를 ‘판매중-안전’에 표시합니다.</span></div>"
         "<div class=\"benchmark\">가격 매력도는 현재 최저가를 같은 기준일에 보존된 "
-        "최근 3개월 판매완료 평균과 비교합니다. 표본 5건 미만은 참고용으로 표시합니다.</div>",
+        "최근 3개월 판매완료 평균과 비교합니다. 신뢰할 수 있는 판매완료 표본이 없으면 빈칸과 사유를 표시합니다.</div>",
         html,
         count=1,
         flags=re.DOTALL,

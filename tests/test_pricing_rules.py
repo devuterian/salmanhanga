@@ -119,6 +119,46 @@ class PricingRulesTest(unittest.TestCase):
         self.assertEqual(row["current"], 100)
         self.assertEqual(row["safe"], 100)
 
+    def test_same_day_verified_history_and_note_survive_refresh(self):
+        ingest_payload(
+            self.connection,
+            {
+                "run_id": "fixture-preserve",
+                "fetched_at": self.as_of.isoformat(),
+                "listings": [self.listing("active", 100, 1, None, model="Preserved")],
+            },
+        )
+        product = self.connection.execute(
+            "SELECT id FROM products WHERE model = 'Preserved'"
+        ).fetchone()["id"]
+        self.connection.execute(
+            """
+            INSERT INTO pricing_runs(
+              id, as_of, ruleset_id, current_listing_max_age_days, source_kind,
+              source_ref, rules_json, created_at
+            ) VALUES ('legacy-preserve', ?, 'legacy', 60, 'legacy_snapshot', NULL, '{}', ?)
+            """,
+            (self.as_of.isoformat(), self.as_of.isoformat()),
+        )
+        self.connection.execute(
+            """
+            INSERT INTO price_guide_rows(
+              pricing_run_id, product_id, low6_price_krw, low6_url,
+              avg3_price_krw, avg3_sample_size, safety_label, note, sort_order
+            ) VALUES ('legacy-preserve', ?, 70, 'https://web.joongna.com/product/history',
+                      80, 3, '주의', '기존 검수 메모', 0)
+            """,
+            (product,),
+        )
+        self.connection.commit()
+        run_id = compute_price_guide(self.connection, self.as_of.isoformat(), "test-preserve")
+        row = next(row for row in display_rows(self.connection, run_id) if row["model"] == "Preserved")
+        self.assertEqual(row["low6"], 70)
+        self.assertEqual(row["low6Url"], "https://web.joongna.com/product/history")
+        self.assertEqual(row["avg3"], 80)
+        self.assertEqual(row["n3"], 3)
+        self.assertEqual(row["note"], "기존 검수 메모")
+
 
 if __name__ == "__main__":
     unittest.main()

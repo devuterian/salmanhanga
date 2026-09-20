@@ -37,6 +37,22 @@
     "seller_safety_checks": {
       "type": "array",
       "items": {"$ref": "seller-safety-check.schema.json"}
+    },
+    "quality_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model", "code", "active_count", "sold_count", "overlap_count", "action"],
+        "properties": {
+          "model": {"type": "string", "minLength": 1},
+          "code": {"const": "joongna_active_sold_overlap"},
+          "active_count": {"type": "integer", "minimum": 0},
+          "sold_count": {"type": "integer", "minimum": 0},
+          "overlap_count": {"type": "integer", "minimum": 1},
+          "action": {"const": "overlapping_sold_listings_excluded"}
+        },
+        "additionalProperties": false
+      }
     }
   },
   "additionalProperties": false
