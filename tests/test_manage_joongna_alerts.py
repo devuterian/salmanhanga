@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.manage_joongna_alerts import keyword_payload
+from scripts.manage_joongna_alerts import DEFAULT_MIN_PRICE, keyword_payload
 
 
 class JoongnaAlertTest(unittest.TestCase):
@@ -21,6 +21,15 @@ class JoongnaAlertTest(unittest.TestCase):
         )
 
         self.assertEqual(payload["userKeywordSeq"], 1234)
+        self.assertEqual(payload["productStartPrice"], DEFAULT_MIN_PRICE)
+
+    def test_rejects_price_below_default_floor(self):
+        with self.assertRaisesRegex(ValueError, "100,000원 이상"):
+            keyword_payload("S23 Ultra", min_price=0, max_price=600000)
+
+    def test_rejects_max_price_below_min_price(self):
+        with self.assertRaisesRegex(ValueError, "최저 가격보다 낮을 수 없습니다"):
+            keyword_payload("S23 Ultra", min_price=200000, max_price=100000)
 
 
 if __name__ == "__main__":

@@ -82,8 +82,8 @@ python3 scripts/manage_joongna_alerts.py list
 python3 scripts/manage_joongna_alerts.py validate "Galaxy S23 Ultra"
 ```
 
-등록·수정·삭제는 중고나라 계정의 실제 알림 설정을 바꿉니다. 가격은 원 단위이며
-상한만 쓸 수도 있습니다.
+등록·수정·삭제는 중고나라 계정의 실제 알림 설정을 바꿉니다. 가격은 원 단위입니다.
+최저 가격은 기본 `100,000원`이며, 0원이나 하한 없는 알림은 만들지 않습니다.
 
 ```bash
 python3 scripts/manage_joongna_alerts.py add "Galaxy S23 Ultra" --max-price 650000

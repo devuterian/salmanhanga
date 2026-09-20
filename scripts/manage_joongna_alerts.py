@@ -13,6 +13,7 @@ import urllib.request
 BASE_URL = "https://main-api.joongna.com"
 KEYCHAIN_ACCOUNT = "local"
 KEYCHAIN_SERVICE = "com.55fries.joongna.session"
+DEFAULT_MIN_PRICE = 100_000
 DEFAULT_HEADERS = {
     "App-Version": "8.8.1",
     "Content-Type": "application/json",
@@ -120,6 +121,11 @@ def keyword_payload(
     max_price: int | None,
     user_keyword_seq: int = 0,
 ) -> dict:
+    min_price = DEFAULT_MIN_PRICE if min_price is None else min_price
+    if min_price < DEFAULT_MIN_PRICE:
+        raise ValueError(f"최저 가격은 {DEFAULT_MIN_PRICE:,}원 이상이어야 합니다")
+    if max_price is not None and max_price < min_price:
+        raise ValueError("최고 가격은 최저 가격보다 낮을 수 없습니다")
     return {
         "categoryName": None,
         "categorySeq": "0",
@@ -226,7 +232,7 @@ def main() -> None:
     except (KeyError, json.JSONDecodeError, subprocess.CalledProcessError) as error:
         print(f"키체인에서 중고나라 세션을 읽지 못했습니다: {error}", file=sys.stderr)
         raise SystemExit(1) from error
-    except (RuntimeError, urllib.error.URLError) as error:
+    except (RuntimeError, ValueError, urllib.error.URLError) as error:
         print(str(error), file=sys.stderr)
         raise SystemExit(1) from error
 
