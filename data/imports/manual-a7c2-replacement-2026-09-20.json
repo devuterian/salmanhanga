@@ -1,0 +1,43 @@
+{
+  "run_id": "manual-a7c2-replacement-2026-09-20",
+  "fetched_at": "2026-09-20T23:40:00+09:00",
+  "listings": [
+    {
+      "marketplace": "joongna",
+      "external_listing_id": "227665381",
+      "brand": "SONY",
+      "model": "Sony a7C II",
+      "variant": "바디",
+      "seller_external_id": "web-profile-simsul888",
+      "seller_name": "심술888",
+      "title": "소니 A7C2 풀프레임 미러리스 바디 (ILCE-7CM2)",
+      "listing_url": "https://web.joongna.com/product/227665381",
+      "price_krw": 1920000,
+      "state": "active",
+      "listed_at": null,
+      "updated_at": "2026-09-19T23:40:00+09:00",
+      "sold_at": null,
+      "is_comparable": true,
+      "exclusion_reason": null,
+      "raw": {
+        "source": "public_listing_page_and_search_result",
+        "observed_active_at": "2026-09-20T23:40:00+09:00",
+        "reason": "혼합 모델명 재고형 매물을 제외하고 바디 단품 활성 매물로 교체"
+      }
+    }
+  ],
+  "seller_safety_checks": [
+    {
+      "marketplace": "joongna",
+      "seller_external_id": "web-profile-simsul888",
+      "checked_at": "2026-09-20T23:40:00+09:00",
+      "verification_status": "verified",
+      "safe_trade_count": 35,
+      "source_url": "https://web.joongna.com/product/227665381",
+      "raw": {
+        "seller_name": "심술888",
+        "profile_text": "안심결제 35건"
+      }
+    }
+  ]
+}

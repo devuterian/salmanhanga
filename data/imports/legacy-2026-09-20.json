@@ -1233,17 +1233,17 @@
       "brand": "SONY",
       "model": "Sony a7C II",
       "variant": "바디",
-      "current_low_temp": 1277000,
-      "current_low_url": "https://m.bunjang.co.kr/products/166498396",
+      "current_low_temp": null,
+      "current_low_url": null,
       "current_safe": null,
       "current_safe_url": null,
       "six_month_low": 1550000,
       "six_month_low_url": "https://web.joongna.com/product/232144448",
       "three_month_avg": 1696000,
       "three_month_n": 5,
-      "recheck_status": "60일 적용·주의(안전이력 확인불가)",
-      "note": "현재 최저 127.7만은 a7C/a7C2 혼합 표기 제목이라 주의 혼합 모델명 표기 매물이라 모델 실물 확인 필요.",
-      "safety_status": "주의 · 안전거래 이력 확인불가"
+      "recheck_status": "혼합 모델명 매물 제외·대체 후보 별도 수집",
+      "note": "a7C/a7C2 혼합 표기 재고형 매물은 현재 최저가에서 제외.",
+      "safety_status": "현재 판매중 정상 후보 없음"
     },
     {
       "brand": "SONY",

@@ -199,7 +199,24 @@ def record_ingestion_run(
 
 def import_legacy(connection: sqlite3.Connection) -> None:
     legacy = json.loads(LEGACY_DATA_PATH.read_text())
-    rows = extract_legacy_rows(SOURCE_HTML_PATH.read_text())
+    rows = [
+        {
+            "brand": row["brand"],
+            "model": row["model"],
+            "variant": row.get("variant", ""),
+            "current": row.get("current_low_temp"),
+            "currentUrl": row.get("current_low_url"),
+            "safe": row.get("current_safe"),
+            "safeUrl": row.get("current_safe_url"),
+            "low6": row.get("six_month_low"),
+            "low6Url": row.get("six_month_low_url"),
+            "avg3": row.get("three_month_avg"),
+            "n3": row.get("three_month_n", 0),
+            "note": row.get("note", ""),
+            "safety": row.get("safety_status", "주의 · 안전거래 이력 확인불가"),
+        }
+        for row in legacy["rows"]
+    ]
     catalog = json.loads(CATALOG_PATH.read_text())["products"]
     catalog_keys = {(item["brand"], item["model"], item["variant"]) for item in catalog}
     visible_keys = {(row["brand"], row["model"], row.get("variant", "")) for row in rows}
@@ -210,6 +227,9 @@ def import_legacy(connection: sqlite3.Connection) -> None:
     assert as_of is not None
     as_of_text = iso(as_of)
     run_id = "legacy-2026-09-20"
+    connection.execute(
+        "DELETE FROM listing_observations WHERE ingestion_run_id = ?", (run_id,)
+    )
     record_ingestion_run(
         connection,
         run_id,

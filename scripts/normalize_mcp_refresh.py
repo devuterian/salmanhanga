@@ -147,6 +147,8 @@ def model_matches(model: str, title: str) -> bool:
     }
     if model == "Fujifilm X100VI" and re.search(r"x100v(?!i)", text):
         return False
+    if model == "Sony a7C II" and re.search(r"a7c(?!2|ii|r)", text):
+        return False
     return not any(word in text for word in conflicts.get(model, ()))
 
 

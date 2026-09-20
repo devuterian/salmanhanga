@@ -13,6 +13,7 @@ class ModelMatchTest(unittest.TestCase):
             ("Sony FX3", "소니 FX30 바디"),
             ("Fujifilm X-E5", "후지 X-E4 바디, X-E5 문의"),
             ("Fujifilm X100VI", "후지 X100V, X100VI 문의"),
+            ("Sony a7C II", "소니 a7c 실버 블랙 바디 민트급 a7c2 a7cii"),
         ]
         for model, title in cases:
             with self.subTest(model=model, title=title):
@@ -22,6 +23,7 @@ class ModelMatchTest(unittest.TestCase):
         self.assertTrue(model_matches("iPhone 16 Pro", "아이폰16 프로 256GB"))
         self.assertTrue(model_matches("Canon R10", "캐논 R10 바디"))
         self.assertTrue(model_matches("Sony a7 III", "소니 A7M3 바디"))
+        self.assertTrue(model_matches("Sony a7C II", "소니 A7C II 바디"))
 
     def test_separates_new_nearby_models(self):
         cases = [
