@@ -79,6 +79,8 @@ class PricingRulesTest(unittest.TestCase):
             self.assertIn("(a.x.current??Infinity)-(b.x.current??Infinity)", html)
             self.assertIn("dealScore(a.x)-dealScore(b.x)", html)
             self.assertIn("55FRIES", html)
+            self.assertIn('family=Asta+Sans:wght@300..800', html)
+            self.assertIn('font:15px/1.5 "Asta Sans"', html)
             self.assertIn('icon="solar:magnifer-linear"', html)
             self.assertNotIn("Material+Symbols+Outlined", html)
             self.assertIn('value="deal" selected', html)
