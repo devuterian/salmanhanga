@@ -13,6 +13,7 @@
 - 안전거래 이력을 확인할 수 없는 판매자는 `주의 · 안전거래 이력 확인불가`로 표시합니다.
 - 안전거래 이력이 확인되고 1회 이상인 판매자 중 최저가를 `판매중-안전`에 표시합니다.
 - `가격 매력도`는 판매중 최저가를 최근 3개월 판매완료 평균과 비교해 `아주 쌈`부터 `많이 비쌈`까지 표시합니다.
+- 3개월 평균은 중고나라 `판매가(EXECUTION)` 시계열의 최근 90일 표본에서 모델별 최소 정상가와 이상값을 제외한 산술평균입니다.
 - 3개월 표본이 5건보다 적으면 `표본 적음`을 함께 표시하고, 평균이나 현재가가 없으면 판단하지 않습니다.
 - 모든 가격 근거에는 중고나라 또는 번개장터 원문 링크를 저장합니다.
 - 판매중 목록과 ID가 겹치는 `판매가` 응답은 판매완료 표본으로 쓰지 않고 `quality_issues`에 기록합니다.
@@ -84,9 +85,11 @@ python3 scripts/manage_joongna_alerts.py validate "Galaxy S23 Ultra"
 
 등록·수정·삭제는 중고나라 계정의 실제 알림 설정을 바꿉니다. 가격은 원 단위입니다.
 최저 가격은 기본 `100,000원`이며, 0원이나 하한 없는 알림은 만들지 않습니다.
+최고 가격은 3개월 판매완료 평균보다 15% 낮은 금액을 1만 원 단위로 내림합니다.
 
 ```bash
 python3 scripts/manage_joongna_alerts.py add "Galaxy S23 Ultra" --max-price 650000
 python3 scripts/manage_joongna_alerts.py update 1234567 "Galaxy S23 Ultra" --max-price 600000
 python3 scripts/manage_joongna_alerts.py remove 1234567
+python3 scripts/manage_joongna_alerts.py sync-discounts
 ```

@@ -8,12 +8,15 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from pathlib import Path
 
 
 BASE_URL = "https://main-api.joongna.com"
 KEYCHAIN_ACCOUNT = "local"
 KEYCHAIN_SERVICE = "com.55fries.joongna.session"
 DEFAULT_MIN_PRICE = 100_000
+ROOT = Path(__file__).resolve().parents[1]
+SOLD_AVERAGES_DIR = ROOT / "data" / "aggregates"
 DEFAULT_HEADERS = {
     "App-Version": "8.8.1",
     "Content-Type": "application/json",
@@ -192,6 +195,40 @@ def command_remove(args: argparse.Namespace) -> None:
     print_json(response.get("data"))
 
 
+def command_sync_discounts(_: argparse.Namespace) -> None:
+    paths = sorted(SOLD_AVERAGES_DIR.glob("sold-averages-*.json"))
+    if not paths:
+        raise ValueError("3개월 판매완료 평균 데이터가 없습니다")
+    rows = json.loads(paths[-1].read_text())["rows"]
+    current = api("GET", "/mypage/pushSetting/keyword")["data"]["keywordVOS"]
+    by_keyword = {item["tagKeywordName"]: item for item in current}
+    updated = []
+    skipped = []
+    for row in rows:
+        maximum = row["alert_max_price_krw"]
+        if maximum is None:
+            skipped.extend(row["alert_keywords"])
+            continue
+        for keyword in row["alert_keywords"]:
+            item = by_keyword.get(keyword)
+            if item is None:
+                skipped.append(keyword)
+                continue
+            api(
+                "PUT",
+                f"/mypage/pushSetting/keyword/{item['userKeywordSeq']}",
+                keyword_payload(
+                    keyword,
+                    min_price=DEFAULT_MIN_PRICE,
+                    max_price=maximum,
+                    user_keyword_seq=item["userKeywordSeq"],
+                ),
+            )
+            updated.append({"keyword": keyword, "max_price": maximum})
+            time.sleep(2)
+    print_json({"updated": updated, "skipped": skipped})
+
+
 def add_price_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--min-price", type=int)
     parser.add_argument("--max-price", type=int)
@@ -222,6 +259,11 @@ def build_parser() -> argparse.ArgumentParser:
     remove_parser = subparsers.add_parser("remove", help="기존 알림 삭제")
     remove_parser.add_argument("user_keyword_seq", type=int)
     remove_parser.set_defaults(handler=command_remove)
+
+    sync_parser = subparsers.add_parser(
+        "sync-discounts", help="3개월 판매완료 평균보다 15% 낮은 상한으로 동기화"
+    )
+    sync_parser.set_defaults(handler=command_sync_discounts)
     return parser
 
 

@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "fetched_at": "2026-09-20T08:03:13+00:00",
+  "window_days": 90,
+  "discount_percent": 15,
+  "rows": [
+    {
+      "model": "Galaxy S22 Ultra",
+      "search_word": "갤럭시 S22 울트라",
+      "source_url": "https://web.joongna.com/search-price/%EA%B0%A4%EB%9F%AD%EC%8B%9C%20S22%20%EC%9A%B8%ED%8A%B8%EB%9D%BC",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 66,
+      "sample_size": 66,
+      "average_price_krw": 323985,
+      "alert_max_price_krw": 270000,
+      "alert_keywords": [
+        "Galaxy S22 Ultra",
+        "갤럭시 s22 울트라"
+      ]
+    },
+    {
+      "model": "Galaxy S23 Ultra",
+      "search_word": "갤럭시 S23 울트라",
+      "source_url": "https://web.joongna.com/search-price/%EA%B0%A4%EB%9F%AD%EC%8B%9C%20S23%20%EC%9A%B8%ED%8A%B8%EB%9D%BC",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 112,
+      "sample_size": 112,
+      "average_price_krw": 481829,
+      "alert_max_price_krw": 400000,
+      "alert_keywords": [
+        "galaxy s23 ultra",
+        "갤럭시 s23 울트라"
+      ]
+    },
+    {
+      "model": "Galaxy S22",
+      "search_word": "갤럭시 S22",
+      "source_url": "https://web.joongna.com/search-price/%EA%B0%A4%EB%9F%AD%EC%8B%9C%20S22",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 179,
+      "sample_size": 179,
+      "average_price_krw": 237765,
+      "alert_max_price_krw": 200000,
+      "alert_keywords": [
+        "Galaxy S22",
+        "갤럭시 s22"
+      ]
+    },
+    {
+      "model": "Galaxy S23",
+      "search_word": "갤럭시 S23",
+      "source_url": "https://web.joongna.com/search-price/%EA%B0%A4%EB%9F%AD%EC%8B%9C%20S23",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 325,
+      "sample_size": 325,
+      "average_price_krw": 343078,
+      "alert_max_price_krw": 290000,
+      "alert_keywords": [
+        "Galaxy S23",
+        "갤럭시 s23"
+      ]
+    },
+    {
+      "model": "iPhone 14 Pro",
+      "search_word": "아이폰 14 프로",
+      "source_url": "https://web.joongna.com/search-price/%EC%95%84%EC%9D%B4%ED%8F%B0%2014%20%ED%94%84%EB%A1%9C",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 245,
+      "sample_size": 245,
+      "average_price_krw": 580850,
+      "alert_max_price_krw": 490000,
+      "alert_keywords": [
+        "iPhone 14 pro",
+        "아이폰 14 프로"
+      ]
+    },
+    {
+      "model": "iPhone 14 Pro Max",
+      "search_word": "아이폰 14 프로 맥스",
+      "source_url": "https://web.joongna.com/search-price/%EC%95%84%EC%9D%B4%ED%8F%B0%2014%20%ED%94%84%EB%A1%9C%20%EB%A7%A5%EC%8A%A4",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 68,
+      "sample_size": 68,
+      "average_price_krw": 715721,
+      "alert_max_price_krw": 600000,
+      "alert_keywords": [
+        "iphone 14 pro max",
+        "아이폰 14 프로 맥스"
+      ]
+    },
+    {
+      "model": "Ricoh GR IV",
+      "search_word": "리코 GR4",
+      "source_url": "https://web.joongna.com/search-price/%EB%A6%AC%EC%BD%94%20GR4",
+      "minimum_comparable_price_krw": 500000,
+      "raw_sample_size": 70,
+      "sample_size": 70,
+      "average_price_krw": 2403500,
+      "alert_max_price_krw": 2040000,
+      "alert_keywords": [
+        "Ricoh GR IV",
+        "리코 gr4"
+      ]
+    },
+    {
+      "model": "Sony RX100 VII",
+      "search_word": "소니 RX100M7",
+      "source_url": "https://web.joongna.com/search-price/%EC%86%8C%EB%8B%88%20RX100M7",
+      "minimum_comparable_price_krw": 500000,
+      "raw_sample_size": 24,
+      "sample_size": 24,
+      "average_price_krw": 1330625,
+      "alert_max_price_krw": 1130000,
+      "alert_keywords": [
+        "Sony RX100 VII",
+        "소니 RX100 VII"
+      ]
+    },
+    {
+      "model": "Panasonic TZ99 / ZS99",
+      "search_word": "파나소닉 TZ99",
+      "source_url": "https://web.joongna.com/search-price/%ED%8C%8C%EB%82%98%EC%86%8C%EB%8B%89%20TZ99",
+      "minimum_comparable_price_krw": 300000,
+      "raw_sample_size": 17,
+      "sample_size": 17,
+      "average_price_krw": 512941,
+      "alert_max_price_krw": 430000,
+      "alert_keywords": [
+        "Panasonic TZ99",
+        "파나소닉 TZ99"
+      ]
+    },
+    {
+      "model": "Insta360 X6",
+      "search_word": "인스타360 X6",
+      "source_url": "https://web.joongna.com/search-price/%EC%9D%B8%EC%8A%A4%ED%83%80360%20X6",
+      "minimum_comparable_price_krw": 300000,
+      "raw_sample_size": 0,
+      "sample_size": 0,
+      "average_price_krw": null,
+      "alert_max_price_krw": null,
+      "alert_keywords": [
+        "insta360 x6",
+        "인스타360 x6"
+      ]
+    },
+    {
+      "model": "DJI Mini 5 Pro",
+      "search_word": "DJI 미니 5 프로",
+      "source_url": "https://web.joongna.com/search-price/DJI%20%EB%AF%B8%EB%8B%88%205%20%ED%94%84%EB%A1%9C",
+      "minimum_comparable_price_krw": 500000,
+      "raw_sample_size": 34,
+      "sample_size": 34,
+      "average_price_krw": 1169118,
+      "alert_max_price_krw": 990000,
+      "alert_keywords": [
+        "dji mini 5 pro",
+        "DJI 미니 5 프로"
+      ]
+    },
+    {
+      "model": "DJI Air 3S",
+      "search_word": "DJI 에어 3S",
+      "source_url": "https://web.joongna.com/search-price/DJI%20%EC%97%90%EC%96%B4%203S",
+      "minimum_comparable_price_krw": 700000,
+      "raw_sample_size": 28,
+      "sample_size": 28,
+      "average_price_krw": 1376786,
+      "alert_max_price_krw": 1170000,
+      "alert_keywords": [
+        "dji air 3s",
+        "dji 에어 3s"
+      ]
+    },
+    {
+      "model": "DJI Mavic 4 Pro",
+      "search_word": "DJI 매빅 4 프로",
+      "source_url": "https://web.joongna.com/search-price/DJI%20%EB%A7%A4%EB%B9%85%204%20%ED%94%84%EB%A1%9C",
+      "minimum_comparable_price_krw": 1500000,
+      "raw_sample_size": 16,
+      "sample_size": 9,
+      "average_price_krw": 2963333,
+      "alert_max_price_krw": 2510000,
+      "alert_keywords": [
+        "dji mavic 4 pro",
+        "dji 매빅 4 프로"
+      ]
+    },
+    {
+      "model": "MacBook Air M4",
+      "search_word": "맥북 에어 M4",
+      "source_url": "https://web.joongna.com/search-price/%EB%A7%A5%EB%B6%81%20%EC%97%90%EC%96%B4%20M4",
+      "minimum_comparable_price_krw": 700000,
+      "raw_sample_size": 90,
+      "sample_size": 90,
+      "average_price_krw": 1410250,
+      "alert_max_price_krw": 1190000,
+      "alert_keywords": [
+        "macbook air m4",
+        "맥북 에어 m4"
+      ]
+    },
+    {
+      "model": "MacBook Pro M4 Pro",
+      "search_word": "맥북 프로 M4 프로",
+      "source_url": "https://web.joongna.com/search-price/%EB%A7%A5%EB%B6%81%20%ED%94%84%EB%A1%9C%20M4%20%ED%94%84%EB%A1%9C",
+      "minimum_comparable_price_krw": 700000,
+      "raw_sample_size": 65,
+      "sample_size": 65,
+      "average_price_krw": 2548615,
+      "alert_max_price_krw": 2160000,
+      "alert_keywords": [
+        "MacBook Pro M4 Pro",
+        "맥북 프로 M4 프로"
+      ]
+    },
+    {
+      "model": "MacBook Pro M4 Max",
+      "search_word": "맥북프로 M4 MAX",
+      "source_url": "https://web.joongna.com/search-price/%EB%A7%A5%EB%B6%81%ED%94%84%EB%A1%9C%20M4%20MAX",
+      "minimum_comparable_price_krw": 700000,
+      "raw_sample_size": 10,
+      "sample_size": 10,
+      "average_price_krw": 4159880,
+      "alert_max_price_krw": 3530000,
+      "alert_keywords": [
+        "MacBook Pro M4 Max",
+        "맥북 프로 M4 맥스"
+      ]
+    },
+    {
+      "model": "Apple Watch Series 10",
+      "search_word": "애플워치10",
+      "source_url": "https://web.joongna.com/search-price/%EC%95%A0%ED%94%8C%EC%9B%8C%EC%B9%9810",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 132,
+      "sample_size": 129,
+      "average_price_krw": 386690,
+      "alert_max_price_krw": 320000,
+      "alert_keywords": [
+        "Apple Watch S10",
+        "애플워치 시리즈10"
+      ]
+    },
+    {
+      "model": "Apple Watch Ultra 2",
+      "search_word": "애플워치 울트라2",
+      "source_url": "https://web.joongna.com/search-price/%EC%95%A0%ED%94%8C%EC%9B%8C%EC%B9%98%20%EC%9A%B8%ED%8A%B8%EB%9D%BC2",
+      "minimum_comparable_price_krw": 150000,
+      "raw_sample_size": 105,
+      "sample_size": 105,
+      "average_price_krw": 552029,
+      "alert_max_price_krw": 460000,
+      "alert_keywords": [
+        "apple watch ultra 2",
+        "애플워치 울트라2"
+      ]
+    }
+  ]
+}

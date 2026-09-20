@@ -2,6 +2,10 @@
   "ruleset_id": "2026-09-20-v2",
   "current_listing_max_age_days": 25,
   "safe_trade_min_count": 1,
+  "sold_average_window_days": 90,
+  "alert_discount_percent": 15,
+  "alert_price_rounding_krw": 10000,
+  "alert_min_price_krw": 100000,
   "caution_when_safe_trade_count_zero": true,
   "caution_when_safe_trade_history_unavailable": true,
   "current_low_order": [

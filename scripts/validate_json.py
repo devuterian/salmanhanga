@@ -77,6 +77,8 @@ def main() -> None:
             else "listing-import.schema.json"
         )
         validate(path, schema)
+    for path in sorted((ROOT / "data" / "aggregates").glob("*.json")):
+        validate(path, "sold-average.schema.json")
     dist = ROOT / "dist" / "data.json"
     payload = load(dist)
     schema = (

@@ -19,6 +19,7 @@ RULES_PATH = ROOT / "config" / "pricing-rules.json"
 LEGACY_DATA_PATH = ROOT / "data" / "imports" / "legacy-2026-09-20.json"
 SOURCE_HTML_PATH = ROOT / "src" / "index.html"
 CATALOG_PATH = ROOT / "data" / "catalog" / "products.json"
+SOLD_AVERAGES_DIR = ROOT / "data" / "aggregates"
 
 
 def stable_id(prefix: str, *parts: object) -> str:
@@ -472,6 +473,13 @@ def compute_price_guide(
     cutoff = as_of_dt - timedelta(days=int(rules["current_listing_max_age_days"]))
     low6_cutoff = as_of_dt - timedelta(days=180)
     avg3_cutoff = as_of_dt - timedelta(days=90)
+    sold_average_files = sorted(SOLD_AVERAGES_DIR.glob("sold-averages-*.json"))
+    sold_averages = {}
+    if sold_average_files:
+        sold_averages = {
+            row["model"]: row
+            for row in json.loads(sold_average_files[-1].read_text())["rows"]
+        }
     for order, product in enumerate(products):
         items = by_product.get(product["id"], [])
         active: list[sqlite3.Row] = []
@@ -526,6 +534,12 @@ def compute_price_guide(
                 avg3 = preserved["avg3_price_krw"]
                 avg3_sample_size = preserved["avg3_sample_size"]
         note = preserved["note"] if preserved is not None else ""
+        aggregate = sold_averages.get(product["model"])
+        if aggregate and aggregate["average_price_krw"] is not None:
+            avg3 = aggregate["average_price_krw"]
+            avg3_sample_size = aggregate["sample_size"]
+            aggregate_note = "3개월 평균은 중고나라 판매가 시계열의 모델 전체 구성 기준."
+            note = f"{note} {aggregate_note}".strip()
         missing_history = []
         if low6_price is None:
             missing_history.append("6개월 판매완료 최저가")

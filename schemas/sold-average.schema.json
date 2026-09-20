@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/devuterian/salmanhanga/schemas/sold-average.schema.json",
+  "title": "최근 3개월 판매완료 평균",
+  "type": "object",
+  "required": ["schema_version", "fetched_at", "window_days", "discount_percent", "rows"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "fetched_at": {"type": "string", "format": "date-time"},
+    "window_days": {"const": 90},
+    "discount_percent": {"const": 15},
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model", "search_word", "source_url", "minimum_comparable_price_krw", "raw_sample_size", "sample_size", "average_price_krw", "alert_max_price_krw", "alert_keywords"],
+        "properties": {
+          "model": {"type": "string", "minLength": 1},
+          "search_word": {"type": "string", "minLength": 1},
+          "source_url": {"type": "string", "format": "uri"},
+          "minimum_comparable_price_krw": {"type": "integer", "minimum": 100000},
+          "raw_sample_size": {"type": "integer", "minimum": 0},
+          "sample_size": {"type": "integer", "minimum": 0},
+          "average_price_krw": {"type": ["integer", "null"], "minimum": 0},
+          "alert_max_price_krw": {"type": ["integer", "null"], "minimum": 100000},
+          "alert_keywords": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {"type": "string", "minLength": 1}
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
