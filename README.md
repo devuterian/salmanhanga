@@ -70,3 +70,23 @@ make PYTHON=.venv/bin/python verify
 현재 MCP는 판매자의 안전거래 횟수를 주지 않습니다. 그래서 해당 판매자는 모두 `주의 · 안전거래 이력 확인불가`로 표시하고 `판매중-안전`에는 넣지 않습니다. 중고나라의 판매 이력 목록도 이번 수집에서는 판매중 목록과 동일하게 내려왔습니다. 겹친 940건은 `quality_issues`에 남기고 판매완료 상세값으로 쓰지 않습니다. 같은 기준일에 검증해 둔 기존 6개월 최저가·근거 링크, 3개월 평균가·표본 수, 검수 메모는 새 판매중 데이터와 함께 보존합니다. 근거가 없는 구성은 값을 만들지 않고 사이트에 `표본 미확보`로 표시합니다.
 
 테이블별 역할과 안전 판정 방식은 [데이터 모델](docs/data-model.md)에 정리돼 있습니다.
+
+## 중고나라 키워드 알림
+
+로그인 세션은 Git이나 JSON에 저장하지 않고 macOS 키체인의
+`com.55fries.joongna.session` 항목에서만 읽습니다. 현재 알림 확인과 키워드 검사는
+데이터를 바꾸지 않습니다.
+
+```bash
+python3 scripts/manage_joongna_alerts.py list
+python3 scripts/manage_joongna_alerts.py validate "Galaxy S23 Ultra"
+```
+
+등록·수정·삭제는 중고나라 계정의 실제 알림 설정을 바꿉니다. 가격은 원 단위이며
+상한만 쓸 수도 있습니다.
+
+```bash
+python3 scripts/manage_joongna_alerts.py add "Galaxy S23 Ultra" --max-price 650000
+python3 scripts/manage_joongna_alerts.py update 1234567 "Galaxy S23 Ultra" --max-price 600000
+python3 scripts/manage_joongna_alerts.py remove 1234567
+```
